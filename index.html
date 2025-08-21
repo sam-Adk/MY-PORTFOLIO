@@ -23,7 +23,7 @@
     transition: opacity 1s ease;
   }
 
-  .intro-logo { width:250px; max-width:60%; opacity:0; animation:fadeIn 2s forwards; }
+  .intro-logo { width:300px; max-width:60%; opacity:0; animation:fadeIn 2s forwards; }
   .zoom-in { transform: scale(5); opacity:0; }
   .click-message { font-size:1rem; color:white; animation:fadeIn 3s forwards; opacity:0; }
 
@@ -41,14 +41,14 @@
     overflow-x:hidden; overflow-y:auto;
   }
 
-  .profile-selection h1 { color:red; font-size:1.8rem; margin-bottom:15px; }
+  .profile-selection h1 { color:red; font-size:2rem; margin-bottom:20px; }
   .profiles {
-    display:flex; gap:10px; width:100%;
+    display:flex; gap:15px; width:100%;
     justify-content:center; flex-wrap:wrap; padding-bottom:10px;
   }
 
   .profile { display:flex; flex-direction:column; align-items:center; background:#111;
-    padding:8px; border-radius:8px; cursor:pointer;
+    padding:10px; border-radius:8px; cursor:pointer;
     transition:0.2s; width:90px; margin:5px;
   }
 
@@ -59,55 +59,70 @@
   /* Navbar */
   nav.navbar {
     display:none; justify-content:space-between;
-    align-items:center; padding:8px 15px;
+    align-items:center; padding:10px 20px;
     background-color:#111; position:sticky; top:0; z-index:1000;
   }
 
-  .logo-img { height:30px; width:auto; }
+  .logo-img { height:40px; width:auto; }
   .nav-links { list-style:none; display:flex; margin:0; padding:0; }
-  .nav-links li { margin-left:10px; }
-  .nav-links a { color:white; text-decoration:none; font-weight:500; font-size:0.8rem; }
+  .nav-links li { margin-left:15px; }
+  .nav-links a { color:white; text-decoration:none; font-weight:600; font-size:0.9rem; }
   .nav-links a:hover { color:red; }
 
   /* Hero */
-  .hero { position:relative; padding:40px 15px; max-width:1000px; margin:auto; z-index:2; overflow:hidden; }
+  .hero { position:relative; padding:60px 20px; max-width:1200px; margin:auto; z-index:2; overflow:hidden; }
   .background-video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1; opacity:0.3; pointer-events:none; }
   .hero h1, .hero .summary, .hero .buttons { position:relative; z-index:2; text-align:center; color:red; }
-  .summary { text-align:center; line-height:1.4; font-size:0.85rem; }
-  .buttons .btn { background:red; color:white; padding:6px 15px; margin:3px; border-radius:4px; font-weight:600; text-decoration:none; font-size:0.8rem; display:inline-block; }
+  .summary { text-align:center; line-height:1.5; font-size:1rem; }
+  .buttons .btn { background:red; color:white; padding:10px 20px; margin:5px; border-radius:5px; font-weight:600; text-decoration:none; font-size:0.9rem; display:inline-block; }
 
   /* Top Picks / Continue Watching */
   .pick-buttons {
-    display:flex; gap:10px; flex-wrap:wrap;
+    display:flex; gap:15px; flex-wrap:wrap;
     justify-content:center; padding-bottom:10px;
   }
 
-  .pick { flex:0 0 auto; width:110px; text-align:center; margin:5px; }
-  .pick img { width:100%; height:140px; border-radius:6px; object-fit:cover; }
-  .pick p { font-size:0.75rem; margin-top:4px; }
+  .pick { flex:0 0 auto; width:140px; text-align:center; margin:5px; }
+  .pick img { width:100%; height:180px; border-radius:8px; object-fit:cover; }
+  .pick p { font-size:0.8rem; margin-top:5px; }
 
-  footer { background-color:#111; text-align:center; padding:10px; font-size:12px; color:#aaa; }
+  footer { background-color:#111; text-align:center; padding:15px; font-size:13px; color:#aaa; }
 
-  /* Small screens */
-  @media (max-width:768px){
-    .hero { padding:30px 10px; }
-    .hero h1 { font-size:1.3rem; }
-    .summary { font-size:0.8rem; }
-    .nav-links a { font-size:0.75rem; margin-left:6px; }
-    .logo-img { height:25px; }
-    .pick { width:90px; }
-    .pick img { height:120px; }
+  /* Medium screens */
+  @media (max-width:1024px){
+    .hero { padding:50px 15px; }
+    .hero h1 { font-size:1.5rem; }
+    .summary { font-size:0.9rem; }
+    .nav-links a { font-size:0.85rem; margin-left:10px; }
+    .logo-img { height:35px; }
+    .pick { width:120px; }
+    .pick img { height:160px; }
   }
 
+  /* Tablet & small screens */
+  @media (max-width:768px){
+    .hero { padding:40px 10px; }
+    .hero h1 { font-size:1.3rem; }
+    .summary { font-size:0.85rem; }
+    .nav-links a { font-size:0.8rem; margin-left:8px; }
+    .logo-img { height:30px; }
+    .pick { width:110px; }
+    .pick img { height:140px; }
+    .profile-selection h1 { font-size:1.7rem; }
+  }
+
+  /* Mobile */
   @media (max-width:480px){
     .profile { width:80px; padding:6px; }
     .profile img { width:60px; height:60px; }
     .profile-selection h1 { font-size:1.5rem; }
-    .pick { width:80px; }
-    .pick img { height:100px; }
+    .pick { width:90px; }
+    .pick img { height:120px; }
     .pick p { font-size:0.7rem; }
     .hero h1 { font-size:1.1rem; }
     .summary { font-size:0.75rem; }
+    .nav-links a { font-size:0.75rem; margin-left:6px; }
+    .logo-img { height:25px; }
   }
 </style>
 </head>
@@ -256,6 +271,7 @@ function goBackToTopPicks(section='top-picks'){
 </script>
 </body>
 </html>
+
 
 
 
