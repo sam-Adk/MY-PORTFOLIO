@@ -12,7 +12,7 @@
     font-family: 'Poppins', sans-serif;
     background-color: #000;
     color: white;
-    overflow: hidden; /* initially locked */
+    overflow: hidden;
   }
 
   /* --- Intro --- */
@@ -30,8 +30,8 @@
   }
 
   .intro-logo {
-    width: 420px;
-    max-width: 80%;
+    width: 300px;
+    max-width: 70%;
     opacity: 0;
     animation: fadeIn 2s forwards;
     transition: transform 2s ease, opacity 1.5s ease;
@@ -70,8 +70,8 @@
 
   .profile-selection h1 {
     color: red;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+    font-size: 2rem;
+    margin-bottom: 15px;
   }
 
   .profiles {
@@ -79,7 +79,7 @@
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
     width: 100%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -91,26 +91,26 @@
     flex-direction: column;
     align-items: center;
     background: #111;
-    padding: 15px;
+    padding: 12px;
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
     flex: 0 0 auto;
-    width: 140px;
+    width: 110px;
     scroll-snap-align: start;
   }
 
   .profile:hover {
     background: #222;
-    transform: translateY(-6px);
-    box-shadow: 0 6px 20px rgba(255,0,0,0.12);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(255,0,0,0.12);
   }
 
   .profile img {
-    width: 100px; height: 100px;
+    width: 80px; height: 80px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     border: 2px solid red;
   }
 
@@ -119,14 +119,14 @@
     display: none;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 8px 15px;
     background-color: #111;
     position: sticky;
     top: 0;
     z-index: 1000;
   }
 
-  .logo-img { height: 40px; width: auto; }
+  .logo-img { height: 35px; width: auto; }
 
   .nav-links {
     list-style: none;
@@ -134,78 +134,76 @@
     margin: 0; padding: 0;
   }
 
-  .nav-links li { margin-left: 20px; }
+  .nav-links li { margin-left: 12px; }
 
   .nav-links a {
     color: white;
     text-decoration: none;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 0.9rem;
   }
 
   .nav-links a:hover { color: red; }
 
   /* --- Hero --- */
-  .hero { position: relative; padding: 60px 20px; max-width:1000px; margin:auto; z-index:2; overflow:hidden; }
+  .hero { position: relative; padding: 50px 15px; max-width:1000px; margin:auto; z-index:2; overflow:hidden; }
   .background-video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1; opacity:0.3; pointer-events:none; }
   .hero h1, .hero .summary, .hero .buttons { position: relative; z-index:2; text-align:center; color:red; }
-  .summary { text-align:center; line-height:1.6; background:none; padding:0; border-radius:0; box-shadow:none; }
-  .buttons .btn { background:red; color:white; padding:10px 20px; margin:5px; border-radius:5px; font-weight:600; text-decoration:none; display:inline-block; }
+  .summary { text-align:center; line-height:1.5; background:none; padding:0; border-radius:0; box-shadow:none; font-size:0.9rem; }
+  .buttons .btn { background:red; color:white; padding:8px 18px; margin:5px; border-radius:5px; font-weight:600; text-decoration:none; display:inline-block; font-size:0.9rem; }
 
   /* --- Top Picks & Continue Watching --- */
   .pick-buttons {
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    gap: 15px;
+    gap: 12px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding-bottom: 10px;
   }
 
-  .pick { flex: 0 0 auto; width: 180px; text-align:center; scroll-snap-align: start; }
-  .pick img { width: 100%; height: 250px; border-radius:10px; }
+  .pick { flex: 0 0 auto; width: 140px; text-align:center; scroll-snap-align: start; }
+  .pick img { width: 100%; height: 180px; border-radius:8px; }
   .pick a { color:white; text-decoration:none; display:inline-block; }
-  .pick a:hover p { color:red; }
+  .pick a:hover p { color:red; font-size:0.85rem; }
 
-  footer { background-color:#111; text-align:center; padding:20px; font-size:14px; color:#aaa; }
+  footer { background-color:#111; text-align:center; padding:15px; font-size:13px; color:#aaa; }
 
   /* --- Small screens --- */
   @media (max-width: 768px) {
-    .profile { width: 120px; padding: 10px; }
-    .profile img { width: 90px; height: 90px; }
-    .profile-selection h1 { font-size:2rem; }
-    .pick { width:140px; }
+    .profile { width: 100px; padding: 10px; }
+    .profile img { width: 70px; height: 70px; }
+    .profile-selection h1 { font-size:1.8rem; }
+    .pick { width:120px; }
+    .pick img { height:150px; }
     .hero { padding:40px 10px; }
-    .hero h1 { font-size:1.8rem; }
-    .summary { font-size:0.9rem; }
+    .hero h1 { font-size:1.6rem; }
+    .summary { font-size:0.85rem; }
+    .nav-links a { font-size:0.85rem; margin-left:8px; }
+    .logo-img { height:30px; }
   }
 
   @media (max-width: 480px) {
-    .profile { width: 100px; padding: 8px; }
-    .profile img { width: 80px; height: 80px; }
+    .profile { width:90px; padding:8px; }
+    .profile img { width:60px; height:60px; }
     .profile-selection h1 { font-size:1.5rem; }
-    .pick { width:120px; }
-    .hero h1 { font-size:1.5rem; }
-    .summary { font-size:0.85rem; }
+    .pick { width:100px; }
+    .pick img { height:120px; }
+    .hero h1 { font-size:1.3rem; }
+    .summary { font-size:0.8rem; }
+    .nav-links a { font-size:0.8rem; margin-left:6px; }
+    .logo-img { height:25px; }
   }
 
-  /* Optional: hide scrollbar but keep scroll */
+  /* Optional: scrollbar styling */
   .profiles::-webkit-scrollbar,
-  .pick-buttons::-webkit-scrollbar {
-    height: 8px;
-  }
-
+  .pick-buttons::-webkit-scrollbar { height: 8px; }
   .profiles::-webkit-scrollbar-thumb,
-  .pick-buttons::-webkit-scrollbar-thumb {
-    background: red;
-    border-radius: 4px;
-  }
-
+  .pick-buttons::-webkit-scrollbar-thumb { background: red; border-radius: 4px; }
   .profiles::-webkit-scrollbar-track,
-  .pick-buttons::-webkit-scrollbar-track {
-    background: #111;
-  }
+  .pick-buttons::-webkit-scrollbar-track { background: #111; }
 </style>
 </head>
 <body>
@@ -353,6 +351,7 @@ function goBackToTopPicks(section='top-picks'){
 </script>
 </body>
 </html>
+
 
 
 
