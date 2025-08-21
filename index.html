@@ -7,8 +7,17 @@
 <link rel="stylesheet" href="style.css" />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
 <style>
+  /* --- MINIMAL FIXES ADDED (do not remove) --- */
+  /* Ensure box-sizing so padding doesn't create overflow */
+  * { box-sizing: border-box; }
+  /* Prevent horizontal page scrolling/black gutters on mobile */
+  html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; }
+  /* Make images/videos respect container width */
+  img, video { max-width: 100%; height: auto; display: block; }
+
+  /* --- Your original CSS (kept, tiny tweaks only where needed) --- */
   body {
-    margin: 0;
+    /* margin: 0; (already set above) */
     font-family: 'Poppins', sans-serif;
     background-color: #000;
     color: white;
@@ -31,7 +40,8 @@
 
   .intro-logo {
     width: 420px;
-    max-width: 80%;
+    /* ensure it never exceeds viewport width */
+    max-width: 80vw;
     opacity: 0;
     animation: fadeIn 2s forwards;
     transition: transform 2s ease, opacity 1.5s ease;
@@ -84,6 +94,9 @@
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding-bottom: 10px;
+    /* prevent the profiles strip from exceeding viewport width */
+    max-width: 100vw;
+    box-sizing: border-box;
   }
 
   .profile {
@@ -124,6 +137,8 @@
     position: sticky;
     top: 0;
     z-index: 1000;
+    /* ensure navbar never causes page overflow */
+    max-width: 100vw;
   }
 
   .logo-img { height: 35px; width: auto; }
@@ -149,7 +164,7 @@
 
   /* --- Hero --- */
   .hero { position: relative; padding: 60px 20px; max-width:1000px; margin:auto; z-index:2; overflow:hidden; }
-  .background-video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1; opacity:0.3; pointer-events:none; }
+  .background-video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1; opacity:0.3; pointer-events:none; max-width: 100vw; }
   .hero h1, .hero .summary, .hero .buttons { position: relative; z-index:2; text-align:center; color:red; }
   .summary { text-align:center; line-height:1.6; background:none; padding:0; border-radius:0; box-shadow:none; }
   .buttons .btn { background:red; color:white; padding:10px 20px; margin:5px; border-radius:5px; font-weight:600; text-decoration:none; display:inline-block; }
@@ -166,6 +181,9 @@
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding-bottom: 10px;
+    /* ensure pick row fits viewport */
+    max-width: 100vw;
+    box-sizing: border-box;
   }
 
   .pick { flex: 0 0 auto; width: 160px; text-align:center; scroll-snap-align: start; }
@@ -372,6 +390,12 @@ function goBackToTopPicks(section='top-picks'){
 </script>
 </body>
 </html>
+
+
+
+
+
+
 
 
 
