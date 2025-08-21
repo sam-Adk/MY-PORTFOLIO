@@ -7,17 +7,11 @@
 <link rel="stylesheet" href="style.css" />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
 <style>
-  /* --- MINIMAL FIXES ADDED (do not remove) --- */
-  /* Ensure box-sizing so padding doesn't create overflow */
   * { box-sizing: border-box; }
-  /* Prevent horizontal page scrolling/black gutters on mobile */
   html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; }
-  /* Make images/videos respect container width */
   img, video { max-width: 100%; height: auto; display: block; }
 
-  /* --- Your original CSS (kept, tiny tweaks only where needed) --- */
   body {
-    /* margin: 0; (already set above) */
     font-family: 'Poppins', sans-serif;
     background-color: #000;
     color: white;
@@ -40,7 +34,6 @@
 
   .intro-logo {
     width: 420px;
-    /* ensure it never exceeds viewport width */
     max-width: 80vw;
     opacity: 0;
     animation: fadeIn 2s forwards;
@@ -60,20 +53,18 @@
 
   .navbar, .hero, footer, .top-picks, .continue-watching { display: none; }
 
-  /* --- WHO'S WATCHING --- */
+  /* --- WHO'S WATCHING (center fix) --- */
   .profile-selection {
     position: fixed;
     inset: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* vertical centering */
+    align-items: center;    /* horizontal centering */
     text-align: center;
     background: black;
     z-index: 9998;
-    margin: 0;
     padding: 0 10px;
-    box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -81,22 +72,20 @@
   .profile-selection h1 {
     color: red;
     font-size: 2.5rem;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 
   .profiles {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
     width: 100%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding-bottom: 10px;
-    /* prevent the profiles strip from exceeding viewport width */
     max-width: 100vw;
-    box-sizing: border-box;
   }
 
   .profile {
@@ -137,7 +126,6 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    /* ensure navbar never causes page overflow */
     max-width: 100vw;
   }
 
@@ -166,7 +154,7 @@
   .hero { position: relative; padding: 60px 20px; max-width:1000px; margin:auto; z-index:2; overflow:hidden; }
   .background-video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1; opacity:0.3; pointer-events:none; max-width: 100vw; }
   .hero h1, .hero .summary, .hero .buttons { position: relative; z-index:2; text-align:center; color:red; }
-  .summary { text-align:center; line-height:1.6; background:none; padding:0; border-radius:0; box-shadow:none; }
+  .summary { text-align:center; line-height:1.6; }
   .buttons .btn { background:red; color:white; padding:10px 20px; margin:5px; border-radius:5px; font-weight:600; text-decoration:none; display:inline-block; }
 
   /* --- Top Picks & Continue Watching --- */
@@ -181,9 +169,7 @@
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding-bottom: 10px;
-    /* ensure pick row fits viewport */
     max-width: 100vw;
-    box-sizing: border-box;
   }
 
   .pick { flex: 0 0 auto; width: 160px; text-align:center; scroll-snap-align: start; }
@@ -207,10 +193,8 @@
     .profile-selection h1 { font-size:2rem; }
     .pick { width:120px; }
     .pick img { height: 170px; }
-    .hero { padding:40px 10px; }
     .hero h1 { font-size:1.8rem; }
     .summary { font-size:0.9rem; }
-    .nav-links { gap: 10px; }
     .nav-links a { font-size: 0.85rem; }
   }
 
@@ -223,45 +207,7 @@
     .hero h1 { font-size:1.5rem; }
     .summary { font-size:0.85rem; }
     .logo-img { height: 25px; }
-    .nav-links { gap: 8px; }
     .nav-links a { font-size: 0.75rem; }
-  }
-
-  /* Optional: custom scrollbar */
-  .profiles::-webkit-scrollbar,
-  .pick-buttons::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .profiles::-webkit-scrollbar-thumb,
-  .pick-buttons::-webkit-scrollbar-thumb {
-    background: red;
-    border-radius: 3px;
-  }
-
-  .profiles::-webkit-scrollbar-track,
-  .pick-buttons::-webkit-scrollbar-track {
-    background: #111;
-  }
-
-  /* ----- NEW: make profiles horizontally swipeable on very small phones ----- */
-  @media (max-width: 480px) {
-    .profiles {
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scroll-snap-type: x mandatory;
-      justify-content: flex-start;
-      padding: 8px 10px;
-    }
-    .profile {
-      flex: 0 0 auto;
-      scroll-snap-align: center;
-      margin-right: 8px;
-    }
-    /* slightly gentler scrollbar look on phones */
-    .profiles::-webkit-scrollbar { height: 6px; }
-    .profiles::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
   }
 </style>
 </head>
@@ -410,7 +356,6 @@ function goBackToTopPicks(section='top-picks'){
 </script>
 </body>
 </html>
-
 
 
 
