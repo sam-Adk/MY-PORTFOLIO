@@ -7,24 +7,18 @@
 <link rel="stylesheet" href="style.css" />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
 <style>
-  /* --- MINIMAL FIXES ADDED (do not remove) --- */
-  /* Ensure box-sizing so padding doesn't create overflow */
   * { box-sizing: border-box; }
-  /* Prevent horizontal page scrolling/black gutters on mobile */
   html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; }
-  /* Make images/videos respect container width */
   img, video { max-width: 100%; height: auto; display: block; }
 
-  /* --- Your original CSS (kept, tiny tweaks only where needed) --- */
   body {
-    /* margin: 0; (already set above) */
     font-family: 'Poppins', sans-serif;
     background-color: #000;
     color: white;
-    overflow: hidden; /* initially locked */
+    overflow: hidden;
   }
 
-  /* --- Intro --- */
+  /* Intro */
   #intro-screen {
     position: fixed;
     top: 0; left: 0;
@@ -37,68 +31,36 @@
     z-index: 9999;
     transition: opacity 1s ease;
   }
-
-  .intro-logo {
-    width: 420px;
-    /* ensure it never exceeds viewport width */
-    max-width: 80vw;
-    opacity: 0;
-    animation: fadeIn 2s forwards;
-    transition: transform 2s ease, opacity 1.5s ease;
-  }
-
+  .intro-logo { width: 420px; max-width: 80vw; opacity: 0; animation: fadeIn 2s forwards; transition: transform 2s ease, opacity 1.5s ease; }
   .zoom-in { transform: scale(5); opacity: 0; }
-
-  .click-message {
-    font-size: 1rem;
-    color: white;
-    animation: fadeIn 3s forwards;
-    opacity: 0;
-  }
-
+  .click-message { font-size: 1rem; color: white; animation: fadeIn 3s forwards; opacity: 0; }
   @keyframes fadeIn { from {opacity:0;} to{opacity:1;} }
-
   .navbar, .hero, footer, .top-picks, .continue-watching { display: none; }
 
-  /* --- WHO'S WATCHING --- */
+  /* Who's Watching */
   .profile-selection {
     position: fixed;
     inset: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* vertical center */
+    align-items: center;     /* horizontal center */
     text-align: center;
     background: black;
     z-index: 9998;
     margin: 0;
     padding: 0 10px;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
   }
-
-  .profile-selection h1 {
-    color: red;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-
+  .profile-selection h1 { color: red; font-size: 2.5rem; margin-bottom: 30px; }
   .profiles {
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    gap: 15px;
-    width: 100%;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 10px;
-    /* prevent the profiles strip from exceeding viewport width */
-    max-width: 100vw;
-    box-sizing: border-box;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 90vw;
   }
-
   .profile {
     display: flex;
     flex-direction: column;
@@ -108,26 +70,12 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
-    flex: 0 0 auto;
     width: 140px;
-    scroll-snap-align: start;
   }
+  .profile:hover { background: #222; transform: translateY(-6px); box-shadow: 0 6px 20px rgba(255,0,0,0.12); }
+  .profile img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; border: 2px solid red; }
 
-  .profile:hover {
-    background: #222;
-    transform: translateY(-6px);
-    box-shadow: 0 6px 20px rgba(255,0,0,0.12);
-  }
-
-  .profile img {
-    width: 100px; height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-    border: 2px solid red;
-  }
-
-  /* --- Navbar --- */
+  /* Navbar */
   nav.navbar {
     display: none;
     justify-content: space-between;
@@ -137,111 +85,49 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    /* ensure navbar never causes page overflow */
-    max-width: 100vw;
   }
-
   .logo-img { height: 35px; width: auto; }
-
-  .nav-links {
-    list-style: none;
-    display: flex;
-    margin: 0; padding: 0;
-    gap: 15px;
-  }
-
-  .nav-links li { margin: 0; }
-
-  .nav-links a {
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 0.95rem;
-  }
-
+  .nav-links { list-style: none; display: flex; margin: 0; padding: 0; gap: 15px; }
+  .nav-links a { color: white; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
   .nav-links a:hover { color: red; }
 
-  /* --- Hero --- */
+  /* Hero */
   .hero { position: relative; padding: 60px 20px; max-width:1000px; margin:auto; z-index:2; overflow:hidden; }
-  .background-video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1; opacity:0.3; pointer-events:none; max-width: 100vw; }
+  .background-video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1; opacity:0.3; pointer-events:none; }
   .hero h1, .hero .summary, .hero .buttons { position: relative; z-index:2; text-align:center; color:red; }
-  .summary { text-align:center; line-height:1.6; background:none; padding:0; border-radius:0; box-shadow:none; }
+  .summary { text-align:center; line-height:1.6; }
   .buttons .btn { background:red; color:white; padding:10px 20px; margin:5px; border-radius:5px; font-weight:600; text-decoration:none; display:inline-block; }
 
-  /* --- Top Picks & Continue Watching --- */
+  /* Top Picks & Continue Watching */
   .top-picks, .continue-watching { padding: 20px 5%; }
   .top-picks h1, .continue-watching h1 { font-size: 1.6rem; margin-bottom: 15px; }
-
-  .pick-buttons {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    gap: 12px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 10px;
-    /* ensure pick row fits viewport */
-    max-width: 100vw;
-    box-sizing: border-box;
-  }
-
-  .pick { flex: 0 0 auto; width: 160px; text-align:center; scroll-snap-align: start; }
+  .pick-buttons { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 10px; }
+  .pick { flex: 0 0 auto; width: 160px; text-align:center; }
   .pick img { width: 100%; height: 220px; border-radius:10px; object-fit: cover; }
-  .pick a { color:white; text-decoration:none; display:inline-block; font-size: 0.9rem; }
-  .pick a:hover p { color:red; }
+  .pick a { color:white; text-decoration:none; font-size: 0.9rem; }
 
   footer { background-color:#111; text-align:center; padding:20px; font-size:14px; color:#aaa; }
 
-  /* --- Responsive --- */
-  @media (max-width: 1024px) {
-    .logo-img { height: 30px; }
-    .nav-links a { font-size: 0.9rem; }
-    .pick { width: 140px; }
-    .pick img { height: 200px; }
-  }
-
+  /* Responsive */
   @media (max-width: 768px) {
-    .profile { width: 120px; padding: 10px; }
-    .profile img { width: 90px; height: 90px; }
-    .profile-selection h1 { font-size:2rem; }
+    .profile { width: 110px; padding: 10px; }
+    .profile img { width: 80px; height: 80px; }
+    .profile-selection h1 { font-size: 2rem; }
     .pick { width:120px; }
     .pick img { height: 170px; }
     .hero { padding:40px 10px; }
     .hero h1 { font-size:1.8rem; }
     .summary { font-size:0.9rem; }
-    .nav-links { gap: 10px; }
-    .nav-links a { font-size: 0.85rem; }
   }
-
   @media (max-width: 480px) {
-    .profile { width: 100px; padding: 8px; }
-    .profile img { width: 80px; height: 80px; }
+    .profile { width: 90px; padding: 8px; }
+    .profile img { width: 70px; height: 70px; }
     .profile-selection h1 { font-size:1.5rem; }
     .pick { width:110px; }
     .pick img { height: 150px; }
     .hero h1 { font-size:1.5rem; }
     .summary { font-size:0.85rem; }
     .logo-img { height: 25px; }
-    .nav-links { gap: 8px; }
-    .nav-links a { font-size: 0.75rem; }
-  }
-
-  /* Optional: custom scrollbar */
-  .profiles::-webkit-scrollbar,
-  .pick-buttons::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .profiles::-webkit-scrollbar-thumb,
-  .pick-buttons::-webkit-scrollbar-thumb {
-    background: red;
-    border-radius: 3px;
-  }
-
-  .profiles::-webkit-scrollbar-track,
-  .pick-buttons::-webkit-scrollbar-track {
-    background: #111;
   }
 </style>
 </head>
@@ -390,6 +276,7 @@ function goBackToTopPicks(section='top-picks'){
 </script>
 </body>
 </html>
+
 
 
 

@@ -319,3 +319,17 @@ section:not(.video-header) {
   border-radius: 12px;
 }
 
+.who-watching {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* vertical center */
+  align-items: center;      /* horizontal center */
+  min-height: 100vh;        /* full viewport height */
+  text-align: center;
+  margin: 0;                /* remove extra margins */
+  padding: 0;               /* remove extra paddings */
+}
+
+.who-watching h1 {
+  margin-bottom: 30px;  /* spacing between text and icons */
+}
