@@ -76,7 +76,7 @@
 
     .profiles {
       display: flex;
-      flex-wrap: nowrap; /* keep 5 profiles in one line */
+      flex-wrap: nowrap; /* keep profiles in one line */
       justify-content: center;
       align-items: center;
       gap: 20px;
@@ -95,7 +95,7 @@
       border-radius: 8px;
       cursor: pointer;
       transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
-      width: 140px; /* smaller to fit 5 */
+      width: 140px;
     }
 
     .profile:hover {
@@ -170,12 +170,33 @@
 
     footer { background-color:#111; text-align:center; padding:20px; font-size:14px; color:#aaa; }
 
-    /* small screens tweaks */
-    @media (max-width: 520px) {
-      .profile { width: 130px; }
+    /* --- RESPONSIVE TWEAKS --- */
+    @media (max-width: 1024px){
+      .hero h1{ font-size:2rem; } 
+      .summary{ font-size:1rem; } 
+      .pick { width:150px; } 
+      .pick img { height:220px; }
+      .profile { width:120px; } 
       .profile img { width:90px; height:90px; }
-      .profile-selection h1 { font-size:1.8rem; }
-      .pick { width:140px; }
+    }
+
+    @media (max-width: 768px){
+      .hero h1{ font-size:1.8rem; } 
+      .summary{ font-size:0.9rem; } 
+      .pick { width:140px; } 
+      .pick img { height:200px; }
+      .profiles { gap:15px; }
+      .profile { width:100px; } 
+      .profile img { width:80px; height:80px; }
+    }
+
+    @media (max-width: 520px){
+      .profile-selection h1{ font-size:1.6rem; } 
+      .hero h1{ font-size:1.5rem; } 
+      .summary{ font-size:0.8rem; }
+      .pick { width:120px; } 
+      .pick img { height:180px; }
+      .buttons .btn { padding:8px 15px; font-size:0.85rem; }
     }
   </style>
 </head>
@@ -353,7 +374,6 @@
 
 </body>
 </html>
-
 
 
 
