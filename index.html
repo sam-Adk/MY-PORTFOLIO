@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Samuel Adikah | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #000;
+      color: white;
+      overflow: hidden; /* initially locked */
+    }
+
+    /* --- Intro --- */
+    #intro-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100vh;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 1s ease;
+    }
+
+    .intro-logo {
+      width: 420px;
+      max-width: 80%;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+      transition: transform 2s ease, opacity 1.5s ease;
+    }
+
+    .zoom-in { transform: scale(5); opacity: 0; }
+
+    .click-message {
+      font-size: 1rem;
+      color: white;
+      animation: fadeIn 3s forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn { from {opacity:0;} to{opacity:1;} }
+
+    /* Hide main content initially */
+    .navbar, .hero, footer, .top-picks, .continue-watching { display: none; }
+
+    /* --- WHO'S WATCHING --- */
+    .profile-selection {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: black;
+      z-index: 9998;
+      margin: 0;
+      padding: 0 20px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .profile-selection h1 {
+      color: red;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    .profiles {
+      display: flex;
+      flex-wrap: nowrap; /* keep 5 profiles in one line */
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+      overflow-x: auto; /* allow scroll if needed */
+    }
+
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #111;
+      padding: 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+      width: 140px; /* smaller to fit 5 */
+    }
+
+    .profile:hover {
+      background: #222;
+      transform: translateY(-6px);
+      box-shadow: 0 6px 20px rgba(255,0,0,0.12);
+    }
+
+    .profile img {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 2px solid red;
+    }
+
+    /* --- Navbar --- */
+    nav.navbar {
+      display: none; /* JS toggle */
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #111;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo-img { height: 40px; width: auto; }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      margin: 0; padding: 0;
+    }
+
+    .nav-links li { margin-left: 20px; }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover { color: red; }
+
+    /* --- Hero --- */
+    .hero { position: relative; padding: 60px 20px; max-width:1000px; margin:auto; z-index:2; overflow:hidden; }
+    .background-video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1; opacity:0.3; pointer-events:none; }
+    .hero h1, .hero .summary, .hero .buttons { position: relative; z-index:2; text-align:center; color:red; }
+    .summary { text-align:center; line-height:1.6; background:none; padding:0; border-radius:0; box-shadow:none; }
+    .buttons .btn { background:red; color:white; padding:10px 20px; margin:5px; border-radius:5px; font-weight:600; text-decoration:none; display:inline-block; }
+
+    /* --- Top Picks --- */
+    .pick-buttons {
+      display: flex;
+      flex-wrap: nowrap; /* force 1 row */
+      justify-content: center;
+      gap: 15px;
+      overflow-x: auto; /* scroll on smaller screens */
+    }
+
+    .pick { flex: 0 0 auto; width: 180px; text-align:center; }
+    .pick img { width: 100%; height: 250px; border-radius:10px; }
+    .pick a { color:white; text-decoration:none; display:inline-block; }
+    .pick a:hover p { color:red; }
+
+    /* --- Continue Watching --- */
+    .continue-watching .pick-buttons { display:flex; flex-wrap: nowrap; gap:15px; overflow-x:auto; }
+    .continue-watching .pick { flex:0 0 auto; width:180px; }
+
+    footer { background-color:#111; text-align:center; padding:20px; font-size:14px; color:#aaa; }
+
+    /* small screens tweaks */
+    @media (max-width: 520px) {
+      .profile { width: 130px; }
+      .profile img { width:90px; height:90px; }
+      .profile-selection h1 { font-size:1.8rem; }
+      .pick { width:140px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 🎬 Netflix Intro -->
+<div id="intro-screen">
+  <img src="assets/images/netflix logo.png" alt="Intro Logo" class="intro-logo" />
+  <p class="click-message">Click anywhere to continue</p>
+</div>
+<audio id="tuduum-sound" src="assets/Netflix-Intro-Sound-Effect.mp3" preload="auto"></audio>
+
+<!-- 👤 Profile Selection (Who's Watching) -->
+<section class="profile-selection">
+  <h1>Who's Watching?</h1>
+  <div class="profiles">
+    <div class="profile" onclick="showMainContent()">
+      <img src="assets/images/2.jpg" alt="Recruiter Profile" />
+      <p>Recruiter</p>
+    </div>
+    <div class="profile" onclick="showMainContent()">
+      <img src="assets/images/7.jpg" alt="Developer Profile" />
+      <p>Developer</p>
+    </div>
+    <div class="profile" onclick="showMainContent()">
+      <img src="assets/images/1.jpg" alt="Stalker Profile" />
+      <p>Stalker</p>
+    </div>
+    <div class="profile" onclick="showMainContent()">
+      <img src="assets/images/4.jpg" alt="Adventurer Profile" />
+      <p>Adventurer</p>
+    </div>
+    <div class="profile" onclick="showMainContent()">
+      <img src="assets/images/5.jpg" alt="Explorer Profile" />
+      <p>Explorer</p>
+    </div>
+  </div>
+</section>
+
+<!-- 🔻 Main Content -->
+<nav class="navbar">
+  <div class="logo">
+    <img src="assets/images/nimepata.png" alt="Samuel Adikah Logo" class="logo-img" />
+  </div>
+  <ul class="nav-links">
+    <li><a href="#" id="home-link">Home</a></li>
+    <li><a href="experience.html">Professional</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="contact.html">Hire Me</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <video autoplay muted loop playsinline class="background-video">
+    <source src="assets/images/videos/background.mp4" type="video/mp4" />
+  </video>
+  <h1>Samuel Adikah - Data Scientist & Web Developer</h1>
+  <p class="summary">
+    Dynamic and result-driven developer with a passion for AI, data science, and cloud technology. <br /><br />
+    I am a full-stack technologist skilled in backend & frontend web development, data science & engineering, analytics, cybersecurity, Salesforce, AWS cloud, and graphic design—delivering end-to-end solutions that are scalable, secure, and impactful
+  </p>
+  <div class="buttons">
+    <a href="assets/files/Samuel_Adikah_Resume.pdf" class="btn" target="_blank">Resume</a>
+    <a href="https://www.linkedin.com/in/samuel-adikah-50a3a132a" class="btn" target="_blank">LinkedIn</a>
+  </div>
+</section>
+
+<section class="top-picks">
+  <h1>Today's Top Picks for Recruiter</h1>
+  <div class="pick-buttons">
+    <div class="pick">
+      <a href="skills.html"><img src="assets/images/skills.jpg" alt="Skills" /><p>Skills</p></a>
+    </div>
+    <div class="pick">
+      <a href="experience.html"><img src="assets/images/experience.jpg" alt="Experience" /><p>Experience</p></a>
+    </div>
+    <div class="pick">
+      <a href="projects.html"><img src="assets/images/projects.jpg" alt="Projects" /><p>Projects</p></a>
+    </div>
+    <div class="pick">
+      <a href="certifications.html"><img src="assets/images/certifications.jpg" alt="Certifications" /><p>Certifications</p></a>
+    </div>
+    <div class="pick">
+      <a href="contact.html"><img src="assets/images/contact me.jpg" alt="Contact Me" /><p>Contact Me</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="continue-watching">
+  <h1>Continue Watching for Recruiter</h1>
+  <div class="pick-buttons">
+    <div class="pick"><a href="music.html"><img src="assets/images/music.jpg" alt="Music" /><p>Music</p></a></div>
+    <div class="pick"><a href="reading.html"><img src="assets/images/reading.jpg" alt="Reading" /><p>Reading</p></a></div>
+    <div class="pick"><a href="blogs.html"><img src="assets/images/blogs.jpg" alt="Blogs" /><p>Blogs</p></a></div>
+    <div class="pick"><a href="datascience.html"><img src="assets/images/data.jpg" alt="News" /><p>Data Science Projects</p></a></div>
+    <div class="pick"><a href="Aboutme.html"><img src="assets/images/certifications2.jpg" alt="Videos" /><p>About Me</p></a></div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Samuel Adikah. All rights reserved.</p>
+</footer>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const intro = document.getElementById('intro-screen');
+    const logo = document.querySelector('.intro-logo');
+    const profileSection = document.querySelector('.profile-selection');
+    const sound = document.getElementById('tuduum-sound');
+    const navbar = document.querySelector('.navbar');
+    const hero = document.querySelector('.hero');
+    const topPicks = document.querySelector('.top-picks');
+    const cont = document.querySelector('.continue-watching');
+    const footerEl = document.querySelector('footer');
+    const homeLink = document.getElementById('home-link');
+
+    function showMainContent(section) {
+      if(intro) intro.style.display='none';
+      if(profileSection) profileSection.style.display='none';
+      if(navbar) navbar.style.display='flex';
+      if(hero) hero.style.display='block';
+      if(topPicks) topPicks.style.display='block';
+      if(cont) cont.style.display='block';
+      if(footerEl) footerEl.style.display='block';
+      document.body.style.overflow='auto';
+      if(section==='continue-watching' && cont) window.scrollTo({top: cont.offsetTop, behavior:'smooth'});
+      else if(section==='top-picks' && topPicks) window.scrollTo({top: topPicks.offsetTop, behavior:'smooth'});
+      else window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    window.showMainContent = showMainContent;
+
+    if(sessionStorage.getItem('skipIntro')==='true'){
+      const prev = sessionStorage.getItem('prevSection') || 'top-picks';
+      showMainContent(prev);
+      sessionStorage.removeItem('skipIntro');
+      sessionStorage.removeItem('prevSection');
+      return;
+    }
+
+    if(location.hash){
+      const hash=location.hash.replace('#','');
+      if(hash==='top-picks' || hash==='continue-watching') showMainContent(hash);
+      return;
+    }
+
+    if(intro){
+      intro.addEventListener('click', ()=>{
+        if(sound){ try{ sound.play(); }catch(e){} }
+        if(logo) logo.classList.add('zoom-in');
+        setTimeout(()=>{ if(intro) intro.style.opacity='0'; },500);
+        setTimeout(()=>{ 
+          if(intro) intro.style.display='none'; 
+          if(profileSection) profileSection.style.display='flex'; 
+          document.body.style.overflow='hidden';
+        },1200);
+      }, {once:true});
+    }
+
+    if(homeLink){
+      homeLink.addEventListener('click', e=>{
+        e.preventDefault();
+        showMainContent('top-picks');
+      });
+    }
+  });
+
+  function goBackToTopPicks(section='top-picks'){
+    try{ sessionStorage.setItem('skipIntro','true'); sessionStorage.setItem('prevSection',section||'top-picks'); }catch(e){}
+    window.location.href='index.html';
+  }
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Samuel Adikah | Music</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+body { 
+    margin:0; 
+    font-family:'Poppins',sans-serif; 
+    background:#000; 
+    color:white; 
+    overflow-x:hidden; 
+    animation: fadeInPage 1s ease forwards; 
+}
+@keyframes fadeInPage { 
+    from { opacity:0; transform: translateY(20px);} 
+    to { opacity:1; transform: translateY(0);} 
+}
+.container { 
+    max-width:800px; 
+    margin:auto; 
+    padding:40px 20px; 
+    text-align:center; 
+}
+h1 { 
+    color:red; 
+    font-size:3rem; 
+    margin-bottom:30px; 
+    animation: fadeInText 1.5s ease forwards; 
+}
+@keyframes fadeInText { 
+    from { opacity:0; transform: translateY(-20px);} 
+    to { opacity:1; transform: translateY(0);} 
+}
+.back-btn { 
+    display:inline-block; 
+    background:red; 
+    color:white; 
+    padding:10px 20px; 
+    border-radius:6px; 
+    text-decoration:none; 
+    margin-bottom:30px; 
+    cursor:pointer; 
+    transition: transform 0.3s, background 0.3s; 
+}
+.back-btn:hover { 
+    background:#ff6666; 
+    transform: translateY(-3px); 
+}
+.music-list { 
+    display:flex; 
+    flex-direction:column; 
+    gap:20px; 
+    align-items:center; 
+}
+.music-item { 
+    background:#111; 
+    border:2px solid #ff0000; 
+    border-radius:12px; 
+    padding:20px; 
+    width:90%; 
+    max-width:500px; 
+    transition: transform 0.3s, box-shadow 0.3s; 
+}
+.music-item:hover { 
+    transform: translateY(-5px) scale(1.02); 
+    box-shadow:0 0 15px red; 
+}
+.music-item h3 { 
+    color:red; 
+    margin-bottom:8px; 
+}
+.music-item p { 
+    color:#ddd; 
+    line-height:1.5; 
+}
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    border: 2px solid #ff0000;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 12px;
+}
+</style>
+<script>
+function goBackToTopPicks() {
+    sessionStorage.setItem("skipIntro", "true");
+    window.location.href = "index.html";
+}
+</script>
+</head>
+<body>
+<div class="container">
+  <a class="back-btn" onclick="goBackToTopPicks()">⬅ Back to Top Picks</a>
+
+  <h1>My Music Interests</h1>
+
+  <!-- Vimeo Video -->
+  <div class="music-item">
+    <h3>Rick Astley - Never Gonna Give You Up</h3>
+    <p>Enjoy the classic hit while browsing my portfolio!</p>
+    <div class="video-container">
+      <iframe 
+        src="https://player.vimeo.com/video/1111987583?autoplay=1&loop=1&muted=0" 
+        frameborder="0" 
+        allow="autoplay; fullscreen; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <div class="music-list">
+    <div class="music-item">
+      <h3>Afrobeat</h3>
+      <p>High energy rhythms and modern African sounds that inspire creativity while coding.</p>
+    </div>
+    <div class="music-item">
+      <h3>Lo-Fi</h3>
+      <p>Relaxing beats for focus, concentration, and productive coding sessions.</p>
+    </div>
+    <div class="music-item">
+      <h3>Instrumental</h3>
+      <p>Classical and modern instrumentals to stimulate the mind and spark innovation.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

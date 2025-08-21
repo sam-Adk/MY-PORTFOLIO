@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Samuel Adikah | Experience</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+body { margin:0; font-family:'Poppins',sans-serif; background:#000; color:white; overflow-x:hidden; animation: fadeInPage 1s ease forwards; }
+@keyframes fadeInPage { from { opacity:0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }
+.container { max-width:1000px; margin:auto; padding:40px 20px; text-align:center; }
+h1 { color:red; font-size:3rem; margin-bottom:30px; animation: fadeInText 1.5s ease forwards; }
+@keyframes fadeInText { from { opacity:0; transform: translateY(-20px);} to { opacity:1; transform: translateY(0);} }
+.back-btn { display:inline-block; background:red; color:white; padding:10px 20px; border-radius:6px; text-decoration:none; margin-bottom:30px; cursor:pointer; transition: transform 0.3s, background 0.3s; }
+.back-btn:hover { background:#ff6666; transform: translateY(-3px); }
+.job-container { display:flex; flex-direction:column; gap:25px; align-items:center; }
+.job-card { background:#111; border:2px solid #ff0000; border-radius:12px; padding:25px; width:80%; text-align:left; transition: transform 0.4s, box-shadow 0.4s; opacity:0; animation: fadeInCard 1s ease forwards; }
+.job-card:nth-child(1){animation-delay:0.2s;}
+.job-card:nth-child(2){animation-delay:0.4s;}
+.job-card:hover { transform: translateY(-8px) scale(1.02); box-shadow:0 0 20px red; }
+.job-card h3 { color:red; margin-bottom:10px; }
+.job-card p { font-weight:bold; margin-bottom:5px; }
+.job-card ul { padding-left:20px; color:#ddd; }
+@keyframes fadeInCard { from { opacity:0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }
+</style>
+<script>
+function goBackToTopPicks() {
+    window.location.href = 'index.html#top-picks';
+}
+</script>
+</head>
+<body>
+<div class="container">
+ <a class="back-btn" onclick="goBackToTopPicks()">⬅ Back to Top Picks</a>
+
+  <h1>Data Science Projects</h1>
+  <div class="job-container">
+    <div class="job-card">
+      <h3>Youtube And Spotify Dataset</h3>
+      <p>
+Link: <a href="https://github.com/sam-Adk/Data-analysis-project/blob/main/youtube%20and%20spotify%20dataset.ipynb" target="_blank">
+YouTube and Spotify Dataset</a><br>
+
+Goal: The goal of this project is to analyze how different engagement metrics—such as likes, comments, views (on YouTube) and popularity scores or follower counts (on Spotify)—influence the number of streams a song or video receives. By comparing YouTube and Spotify data, the analysis aims to uncover patterns in listener/viewer behavior and determine whether social engagement can predict streaming success.
+</p>
+
+</div>
+<div class="job-card">
+  <h3>Google Playstore App Dataset</h3>
+  <p>Link: <a href="https://github.com/sam-Adk/Data-analysis-project/blob/main/Google%20PlayStore%20App%20DATA%20set%20(1).ipynb" target="_blank">
+Google Playstore App Dataset</a></p>
+
+Goal the main purpose was to i dentify what influences app downloads and purchases on Google playstore
+
+Description
+
+I found out that Free apps were more downloaded than those that were to be purchased
+some unique had the highest ratings ,eg events and education
+apps that had the maximum Reviews were Facebook and whatsapp</p>
+      <ul>
+        <li>Analyzed user data to optimize retention</li>
+        <li>Created a churn prediction model with 87% accuracy</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script>
+  function goBackToTopPicks() {
+    sessionStorage.setItem("skipIntro", "true");
+    window.location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>

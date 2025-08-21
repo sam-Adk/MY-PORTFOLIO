@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Samuel Adikah | Experience</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+body { margin:0; font-family:'Poppins',sans-serif; background:#000; color:white; overflow-x:hidden; animation: fadeInPage 1s ease forwards; }
+@keyframes fadeInPage { from { opacity:0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }
+.container { max-width:1000px; margin:auto; padding:40px 20px; text-align:center; }
+h1 { color:red; font-size:3rem; margin-bottom:30px; animation: fadeInText 1.5s ease forwards; }
+@keyframes fadeInText { from { opacity:0; transform: translateY(-20px);} to { opacity:1; transform: translateY(0);} }
+.back-btn { display:inline-block; background:red; color:white; padding:10px 20px; border-radius:6px; text-decoration:none; margin-bottom:30px; cursor:pointer; transition: transform 0.3s, background 0.3s; }
+.back-btn:hover { background:#ff6666; transform: translateY(-3px); }
+.job-container { display:flex; flex-direction:column; gap:25px; align-items:center; }
+.job-card { background:#111; border:2px solid #ff0000; border-radius:12px; padding:25px; width:80%; text-align:left; transition: transform 0.4s, box-shadow 0.4s; opacity:0; animation: fadeInCard 1s ease forwards; }
+.job-card:nth-child(1){animation-delay:0.2s;}
+.job-card:nth-child(2){animation-delay:0.4s;}
+.job-card:hover { transform: translateY(-8px) scale(1.02); box-shadow:0 0 20px red; }
+.job-card h3 { color:red; margin-bottom:10px; }
+.job-card p { font-weight:bold; margin-bottom:5px; }
+.job-card ul { padding-left:20px; color:#ddd; }
+@keyframes fadeInCard { from { opacity:0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }
+</style>
+<script>
+function goBackToTopPicks() {
+    window.location.href = 'index.html#top-picks';
+}
+</script>
+</head>
+<body>
+<div class="container">
+ <a class="back-btn" onclick="goBackToTopPicks()">⬅ Back to Top Picks</a>
+
+  <h1>Certifications</h1>
+  <div class="job-container">
+    <div class="job-card">
+      <h3>ALX proffessional foundation 3-Months</h3>
+      <p>2024</p>
+      <ul>
+        <li>Digital Productivity Tools & Collaboration Platforms</li>
+        <li>Interpersonal and Professional Soft Skills</li>
+        <li>Leadership & Self-Management Capabilities</li>
+      </ul>
+    </div>
+    <div class="job-card">
+      <h3>Diploma in Data science using Python</h3>
+      <p>2024 – 2025</p>
+      <ul>
+        <li>Analyzed user data to optimize retention</li>
+        <li>Created a churn prediction model with 87% accuracy</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script>
+  function goBackToTopPicks() {
+    sessionStorage.setItem("skipIntro", "true");
+    window.location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>

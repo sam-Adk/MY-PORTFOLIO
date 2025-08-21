@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Samuel Adikah | Blogs</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+body { 
+  margin:0; 
+  font-family:'Poppins',sans-serif; 
+  background:#000; 
+  color:white; 
+  overflow-x:hidden; 
+  animation: fadeInPage 1s ease forwards; 
+}
+@keyframes fadeInPage { 
+  from { opacity:0; transform: translateY(20px);} 
+  to { opacity:1; transform: translateY(0);} 
+}
+.container { max-width:800px; margin:auto; padding:40px 20px; text-align:center; }
+h1 { color:red; font-size:3rem; margin-bottom:30px; animation: fadeInText 1.5s ease forwards; }
+@keyframes fadeInText { from { opacity:0; transform: translateY(-20px);} to { opacity:1; transform: translateY(0);} }
+.back-btn { display:inline-block; background:red; color:white; padding:10px 20px; border-radius:6px; text-decoration:none; margin-bottom:30px; cursor:pointer; transition: transform 0.3s, background 0.3s; }
+.back-btn:hover { background:#ff6666; transform: translateY(-3px); }
+.blog-list { display:flex; flex-direction:column; gap:20px; align-items:center; }
+.blog-item { background:#111; border:2px solid #ff0000; border-radius:12px; padding:20px; width:90%; max-width:500px; transition: transform 0.3s, box-shadow 0.3s; }
+.blog-item:hover { transform: translateY(-5px) scale(1.02); box-shadow:0 0 15px red; }
+.blog-item h3 { color:red; margin-bottom:8px; }
+.blog-item p { color:#ddd; line-height:1.5; }
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="back-btn" onclick="goBackToTopPicks()">⬅ Back to Top Picks</a>
+
+  <h1>My Blogs</h1>
+  <div class="blog-list">
+    <div class="blog-item">
+      <h3>How AI is Changing Web Development</h3>
+      <p>Exploring the impact of artificial intelligence in building smarter, faster, and more dynamic web applications.</p>
+    </div>
+    <div class="blog-item">
+      <h3>Top 5 Tips for Data Analysis Beginners</h3>
+      <p>Step-by-step guide for aspiring data analysts to start their journey efficiently and effectively.</p>
+    </div>
+    <div class="blog-item">
+      <h3>Cloud Computing Essentials</h3>
+      <p>An introduction to AWS, cloud storage, and deploying scalable applications in the cloud.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function goBackToTopPicks() {
+  // Redirect back to index.html main sections
+  window.location.href = 'index.html#top-picks';
+}
+</script>
+<script>
+  function goBackToTopPicks() {
+    sessionStorage.setItem("skipIntro", "true");
+    window.location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>
+
+
+
+
