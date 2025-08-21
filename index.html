@@ -83,8 +83,12 @@
       max-width: 1000px;
       width: 100%;
       margin: 0 auto;
-      overflow-x: auto; /* allow scroll if needed */
+      overflow-x: auto; /* allow horizontal scroll on small screens */
+      padding-bottom: 10px;
     }
+
+    .profiles::-webkit-scrollbar { display: none; } /* hide scrollbar in webkit */
+    .profiles { -ms-overflow-style: none; scrollbar-width: none; } /* hide scrollbar in Firefox */
 
     .profile {
       display: flex;
@@ -95,7 +99,8 @@
       border-radius: 8px;
       cursor: pointer;
       transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
-      width: 140px;
+      width: 140px; 
+      flex-shrink: 0;
     }
 
     .profile:hover {
@@ -143,6 +148,44 @@
 
     .nav-links a:hover { color: red; }
 
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      transition: all 0.3s ease;
+    }
+
+    /* Mobile Navbar */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 60px; /* below navbar */
+        right: -100%;
+        height: calc(100vh - 60px);
+        width: 200px;
+        background-color: #111;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        gap: 20px;
+        transition: right 0.3s ease;
+        z-index: 999;
+      }
+
+      .nav-links.show { right: 0; }
+      .hamburger { display: flex; }
+
+      .nav-links li { margin-left: 0; }
+    }
+
     /* --- Hero --- */
     .hero { position: relative; padding: 60px 20px; max-width:1000px; margin:auto; z-index:2; overflow:hidden; }
     .background-video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1; opacity:0.3; pointer-events:none; }
@@ -153,11 +196,15 @@
     /* --- Top Picks --- */
     .pick-buttons {
       display: flex;
-      flex-wrap: nowrap; /* force 1 row */
+      flex-wrap: nowrap; 
       justify-content: center;
       gap: 15px;
-      overflow-x: auto; /* scroll on smaller screens */
+      overflow-x: auto; 
+      padding-bottom: 10px;
     }
+
+    .pick-buttons::-webkit-scrollbar { display: none; }
+    .pick-buttons { -ms-overflow-style: none; scrollbar-width: none; }
 
     .pick { flex: 0 0 auto; width: 180px; text-align:center; }
     .pick img { width: 100%; height: 250px; border-radius:10px; }
@@ -170,33 +217,14 @@
 
     footer { background-color:#111; text-align:center; padding:20px; font-size:14px; color:#aaa; }
 
-    /* --- RESPONSIVE TWEAKS --- */
-    @media (max-width: 1024px){
-      .hero h1{ font-size:2rem; } 
-      .summary{ font-size:1rem; } 
-      .pick { width:150px; } 
-      .pick img { height:220px; }
-      .profile { width:120px; } 
+    /* small screens tweaks */
+    @media (max-width: 520px) {
+      .profile { width: 130px; }
       .profile img { width:90px; height:90px; }
-    }
-
-    @media (max-width: 768px){
-      .hero h1{ font-size:1.8rem; } 
-      .summary{ font-size:0.9rem; } 
-      .pick { width:140px; } 
-      .pick img { height:200px; }
-      .profiles { gap:15px; }
-      .profile { width:100px; } 
-      .profile img { width:80px; height:80px; }
-    }
-
-    @media (max-width: 520px){
-      .profile-selection h1{ font-size:1.6rem; } 
-      .hero h1{ font-size:1.5rem; } 
-      .summary{ font-size:0.8rem; }
-      .pick { width:120px; } 
-      .pick img { height:180px; }
-      .buttons .btn { padding:8px 15px; font-size:0.85rem; }
+      .profile-selection h1 { font-size:1.8rem; }
+      .pick { width:140px; }
+      .hero h1 { font-size:1.8rem; }
+      .summary { font-size:0.9rem; }
     }
   </style>
 </head>
@@ -242,6 +270,13 @@
   <div class="logo">
     <img src="assets/images/nimepata.png" alt="Samuel Adikah Logo" class="logo-img" />
   </div>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
   <ul class="nav-links">
     <li><a href="#" id="home-link">Home</a></li>
     <li><a href="experience.html">Professional</a></li>
@@ -269,21 +304,11 @@
 <section class="top-picks">
   <h1>Today's Top Picks for Recruiter</h1>
   <div class="pick-buttons">
-    <div class="pick">
-      <a href="skills.html"><img src="assets/images/skills.jpg" alt="Skills" /><p>Skills</p></a>
-    </div>
-    <div class="pick">
-      <a href="experience.html"><img src="assets/images/experience.jpg" alt="Experience" /><p>Experience</p></a>
-    </div>
-    <div class="pick">
-      <a href="projects.html"><img src="assets/images/projects.jpg" alt="Projects" /><p>Projects</p></a>
-    </div>
-    <div class="pick">
-      <a href="certifications.html"><img src="assets/images/certifications.jpg" alt="Certifications" /><p>Certifications</p></a>
-    </div>
-    <div class="pick">
-      <a href="contact.html"><img src="assets/images/contact me.jpg" alt="Contact Me" /><p>Contact Me</p></a>
-    </div>
+    <div class="pick"><a href="skills.html"><img src="assets/images/skills.jpg" alt="Skills" /><p>Skills</p></a></div>
+    <div class="pick"><a href="experience.html"><img src="assets/images/experience.jpg" alt="Experience" /><p>Experience</p></a></div>
+    <div class="pick"><a href="projects.html"><img src="assets/images/projects.jpg" alt="Projects" /><p>Projects</p></a></div>
+    <div class="pick"><a href="certifications.html"><img src="assets/images/certifications.jpg" alt="Certifications" /><p>Certifications</p></a></div>
+    <div class="pick"><a href="contact.html"><img src="assets/images/contact me.jpg" alt="Contact Me" /><p>Contact Me</p></a></div>
   </div>
 </section>
 
@@ -365,6 +390,11 @@
       });
     }
   });
+
+  function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('show');
+  }
 
   function goBackToTopPicks(section='top-picks'){
     try{ sessionStorage.setItem('skipIntro','true'); sessionStorage.setItem('prevSection',section||'top-picks'); }catch(e){}
