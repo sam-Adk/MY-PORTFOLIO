@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Samuel Adikah | Portfolio</title>
+<link rel="stylesheet" href="style.css" />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
 <style>
   body {
@@ -11,118 +12,199 @@
     font-family: 'Poppins', sans-serif;
     background-color: #000;
     color: white;
-    overflow: hidden;
+    overflow: hidden; /* initially locked */
   }
 
-  /* Intro */
+  /* --- Intro --- */
   #intro-screen {
-    position: fixed; top:0; left:0;
-    width:100%; height:100vh;
-    background:black; display:flex; flex-direction:column;
-    align-items:center; justify-content:center; z-index:9999;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
     transition: opacity 1s ease;
   }
 
-  .intro-logo { width:300px; max-width:60%; opacity:0; animation:fadeIn 2s forwards; }
-  .zoom-in { transform: scale(5); opacity:0; }
-  .click-message { font-size:1rem; color:white; animation:fadeIn 3s forwards; opacity:0; }
+  .intro-logo {
+    width: 420px;
+    max-width: 80%;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    transition: transform 2s ease, opacity 1.5s ease;
+  }
 
-  @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+  .zoom-in { transform: scale(5); opacity: 0; }
 
-  .navbar, .hero, footer, .top-picks, .continue-watching { display:none; }
+  .click-message {
+    font-size: 1rem;
+    color: white;
+    animation: fadeIn 3s forwards;
+    opacity: 0;
+  }
 
-  /* Who's Watching */
+  @keyframes fadeIn { from {opacity:0;} to{opacity:1;} }
+
+  .navbar, .hero, footer, .top-picks, .continue-watching { display: none; }
+
+  /* --- WHO'S WATCHING --- */
   .profile-selection {
-    position: fixed; inset:0; display:flex;
-    flex-direction:column; justify-content:center;
-    align-items:center; text-align:center;
-    background:black; z-index:9998;
-    margin:0; padding:0 10px; box-sizing:border-box;
-    overflow-x:hidden; overflow-y:auto;
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: black;
+    z-index: 9998;
+    margin: 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
-  .profile-selection h1 { color:red; font-size:2rem; margin-bottom:20px; }
+  .profile-selection h1 {
+    color: red;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
   .profiles {
-    display:flex; gap:15px; width:100%;
-    justify-content:center; flex-wrap:wrap; padding-bottom:10px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
   }
 
-  .profile { display:flex; flex-direction:column; align-items:center; background:#111;
-    padding:10px; border-radius:8px; cursor:pointer;
-    transition:0.2s; width:90px; margin:5px;
+  .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #111;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+    flex: 0 0 auto;
+    width: 140px;
+    scroll-snap-align: start;
   }
 
-  .profile:hover { background:#222; transform:translateY(-4px); }
-  .profile img { width:70px; height:70px; border-radius:50%; object-fit:cover; margin-bottom:5px; border:2px solid red; }
-  .profile p { font-size:0.75rem; margin:0; text-align:center; }
+  .profile:hover {
+    background: #222;
+    transform: translateY(-6px);
+    box-shadow: 0 6px 20px rgba(255,0,0,0.12);
+  }
 
-  /* Navbar */
+  .profile img {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 2px solid red;
+  }
+
+  /* --- Navbar --- */
   nav.navbar {
-    display:none; justify-content:space-between;
-    align-items:center; padding:10px 20px;
-    background-color:#111; position:sticky; top:0; z-index:1000;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #111;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
 
-  .logo-img { height:40px; width:auto; }
-  .nav-links { list-style:none; display:flex; margin:0; padding:0; }
-  .nav-links li { margin-left:15px; }
-  .nav-links a { color:white; text-decoration:none; font-weight:600; font-size:0.9rem; }
-  .nav-links a:hover { color:red; }
+  .logo-img { height: 40px; width: auto; }
 
-  /* Hero */
-  .hero { position:relative; padding:60px 20px; max-width:1200px; margin:auto; z-index:2; overflow:hidden; }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0; padding: 0;
+  }
+
+  .nav-links li { margin-left: 20px; }
+
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .nav-links a:hover { color: red; }
+
+  /* --- Hero --- */
+  .hero { position: relative; padding: 60px 20px; max-width:1000px; margin:auto; z-index:2; overflow:hidden; }
   .background-video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1; opacity:0.3; pointer-events:none; }
-  .hero h1, .hero .summary, .hero .buttons { position:relative; z-index:2; text-align:center; color:red; }
-  .summary { text-align:center; line-height:1.5; font-size:1rem; }
-  .buttons .btn { background:red; color:white; padding:10px 20px; margin:5px; border-radius:5px; font-weight:600; text-decoration:none; font-size:0.9rem; display:inline-block; }
+  .hero h1, .hero .summary, .hero .buttons { position: relative; z-index:2; text-align:center; color:red; }
+  .summary { text-align:center; line-height:1.6; background:none; padding:0; border-radius:0; box-shadow:none; }
+  .buttons .btn { background:red; color:white; padding:10px 20px; margin:5px; border-radius:5px; font-weight:600; text-decoration:none; display:inline-block; }
 
-  /* Top Picks / Continue Watching */
+  /* --- Top Picks & Continue Watching --- */
   .pick-buttons {
-    display:flex; gap:15px; flex-wrap:wrap;
-    justify-content:center; padding-bottom:10px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 15px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
   }
 
-  .pick { flex:0 0 auto; width:140px; text-align:center; margin:5px; }
-  .pick img { width:100%; height:180px; border-radius:8px; object-fit:cover; }
-  .pick p { font-size:0.8rem; margin-top:5px; }
+  .pick { flex: 0 0 auto; width: 180px; text-align:center; scroll-snap-align: start; }
+  .pick img { width: 100%; height: 250px; border-radius:10px; }
+  .pick a { color:white; text-decoration:none; display:inline-block; }
+  .pick a:hover p { color:red; }
 
-  footer { background-color:#111; text-align:center; padding:15px; font-size:13px; color:#aaa; }
+  footer { background-color:#111; text-align:center; padding:20px; font-size:14px; color:#aaa; }
 
-  /* Medium screens */
-  @media (max-width:1024px){
-    .hero { padding:50px 15px; }
-    .hero h1 { font-size:1.5rem; }
-    .summary { font-size:0.9rem; }
-    .nav-links a { font-size:0.85rem; margin-left:10px; }
-    .logo-img { height:35px; }
-    .pick { width:120px; }
-    .pick img { height:160px; }
-  }
-
-  /* Tablet & small screens */
-  @media (max-width:768px){
+  /* --- Small screens --- */
+  @media (max-width: 768px) {
+    .profile { width: 120px; padding: 10px; }
+    .profile img { width: 90px; height: 90px; }
+    .profile-selection h1 { font-size:2rem; }
+    .pick { width:140px; }
     .hero { padding:40px 10px; }
-    .hero h1 { font-size:1.3rem; }
-    .summary { font-size:0.85rem; }
-    .nav-links a { font-size:0.8rem; margin-left:8px; }
-    .logo-img { height:30px; }
-    .pick { width:110px; }
-    .pick img { height:140px; }
-    .profile-selection h1 { font-size:1.7rem; }
+    .hero h1 { font-size:1.8rem; }
+    .summary { font-size:0.9rem; }
   }
 
-  /* Mobile */
-  @media (max-width:480px){
-    .profile { width:80px; padding:6px; }
-    .profile img { width:60px; height:60px; }
+  @media (max-width: 480px) {
+    .profile { width: 100px; padding: 8px; }
+    .profile img { width: 80px; height: 80px; }
     .profile-selection h1 { font-size:1.5rem; }
-    .pick { width:90px; }
-    .pick img { height:120px; }
-    .pick p { font-size:0.7rem; }
-    .hero h1 { font-size:1.1rem; }
-    .summary { font-size:0.75rem; }
-    .nav-links a { font-size:0.75rem; margin-left:6px; }
-    .logo-img { height:25px; }
+    .pick { width:120px; }
+    .hero h1 { font-size:1.5rem; }
+    .summary { font-size:0.85rem; }
+  }
+
+  /* Optional: hide scrollbar but keep scroll */
+  .profiles::-webkit-scrollbar,
+  .pick-buttons::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .profiles::-webkit-scrollbar-thumb,
+  .pick-buttons::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 4px;
+  }
+
+  .profiles::-webkit-scrollbar-track,
+  .pick-buttons::-webkit-scrollbar-track {
+    background: #111;
   }
 </style>
 </head>
@@ -139,11 +221,11 @@
 <section class="profile-selection">
   <h1>Who's Watching?</h1>
   <div class="profiles">
-    <div class="profile" onclick="showMainContent()"><img src="assets/images/2.jpg" alt="Recruiter"/><p>Recruiter</p></div>
-    <div class="profile" onclick="showMainContent()"><img src="assets/images/7.jpg" alt="Developer"/><p>Developer</p></div>
-    <div class="profile" onclick="showMainContent()"><img src="assets/images/1.jpg" alt="Stalker"/><p>Stalker</p></div>
-    <div class="profile" onclick="showMainContent()"><img src="assets/images/4.jpg" alt="Adventurer"/><p>Adventurer</p></div>
-    <div class="profile" onclick="showMainContent()"><img src="assets/images/5.jpg" alt="Explorer"/><p>Explorer</p></div>
+    <div class="profile" onclick="showMainContent()"><img src="assets/images/2.jpg" alt="Recruiter" /><p>Recruiter</p></div>
+    <div class="profile" onclick="showMainContent()"><img src="assets/images/7.jpg" alt="Developer" /><p>Developer</p></div>
+    <div class="profile" onclick="showMainContent()"><img src="assets/images/1.jpg" alt="Stalker" /><p>Stalker</p></div>
+    <div class="profile" onclick="showMainContent()"><img src="assets/images/4.jpg" alt="Adventurer" /><p>Adventurer</p></div>
+    <div class="profile" onclick="showMainContent()"><img src="assets/images/5.jpg" alt="Explorer" /><p>Explorer</p></div>
   </div>
 </section>
 
@@ -162,7 +244,7 @@
 <!-- Hero -->
 <section class="hero">
   <video autoplay muted loop playsinline class="background-video">
-    <source src="assets/images/videos/background.mp4" type="video/mp4"/>
+    <source src="assets/images/videos/background.mp4" type="video/mp4" />
   </video>
   <h1>Samuel Adikah - Data Scientist & Web Developer</h1>
   <p class="summary">Dynamic and result-driven developer with a passion for AI, data science, and cloud technology. <br/><br/>I am a full-stack technologist skilled in backend & frontend web development, data science & engineering, analytics, cybersecurity, Salesforce, AWS cloud, and graphic design—delivering end-to-end solutions that are scalable, secure, and impactful.</p>
