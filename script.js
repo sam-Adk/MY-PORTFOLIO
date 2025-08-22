@@ -53,3 +53,20 @@ if (intro) {
         document.body.style.overflow = 'hidden';
     }, { once: true });
 }
+
+document.querySelectorAll('.pick-buttons, .profiles').forEach(container => {
+  let scrollAmount = 0;
+
+  container.addEventListener('wheel', e => {
+    e.preventDefault();
+    scrollAmount += e.deltaY;
+
+    const step = () => {
+      if(Math.abs(scrollAmount) < 0.5) return scrollAmount = 0;
+      container.scrollLeft += scrollAmount * 0.1;
+      scrollAmount *= 0.9; // damping effect
+      requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  });
+});
