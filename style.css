@@ -360,4 +360,11 @@ body, html {
   .profile img { width: 70px; height: 70px; }
   .hero h1 { font-size: 1.4rem; }
 }
+.pick img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.pick img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(255, 0, 0, 0.3);
+}
 
