@@ -333,3 +333,74 @@ section:not(.video-header) {
 .who-watching h1 {
   margin-bottom: 30px;  /* spacing between text and icons */
 }
+
+/* Default Dark Mode (Netflix style) */
+body {
+  background-color: #000;
+  color: #fff;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Light Mode */
+body.light-mode {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Button styling */
+.theme-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+body.light-mode .theme-btn {
+  background: #333;
+  color: #fff;
+}
+
+/* Recruiter Cards */
+.recruiter-row {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 20px;
+}
+
+.recruiter-card {
+  flex: 0 0 auto;
+  width: 200px;     /* Controls width */
+  height: 120px;    /* Controls height */
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.recruiter-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recruiter-card:hover {
+  transform: scale(1.05);
+}
+
+.recruiter-card p {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+}
