@@ -19,7 +19,7 @@ body {
     to { opacity:1; transform: translateY(0);} 
 }
 .container { 
-    max-width:800px; 
+    max-width:900px; 
     margin:auto; 
     padding:40px 20px; 
     text-align:center; 
@@ -52,7 +52,7 @@ h1 {
 .music-list { 
     display:flex; 
     flex-direction:column; 
-    gap:20px; 
+    gap:30px; /* More spacing between music items */
     align-items:center; 
 }
 .music-item { 
@@ -60,21 +60,22 @@ h1 {
     border:2px solid #ff0000; 
     border-radius:12px; 
     padding:20px; 
-    width:90%; 
-    max-width:500px; 
+    width:95%; 
+    max-width:600px; 
     transition: transform 0.3s, box-shadow 0.3s; 
 }
 .music-item:hover { 
     transform: translateY(-5px) scale(1.02); 
-    box-shadow:0 0 15px red; 
+    box-shadow:0 0 20px rgba(255,0,0,0.5); 
 }
 .music-item h3 { 
     color:red; 
-    margin-bottom:8px; 
+    margin-bottom:12px; 
 }
 .music-item p { 
     color:#ddd; 
     line-height:1.5; 
+    margin-bottom:15px;
 }
 .video-container {
     position: relative;
@@ -94,6 +95,12 @@ h1 {
     border: 0;
     border-radius: 12px;
 }
+
+/* Responsive */
+@media (max-width:768px){
+    .music-item { width:90%; padding:15px; }
+    h1 { font-size:2.2rem; }
+}
 </style>
 <script>
 function goBackToTopPicks() {
@@ -108,33 +115,36 @@ function goBackToTopPicks() {
 
   <h1>My Music Interests</h1>
 
-  <!-- Vimeo Video -->
-  <div class="music-item">
-    <h3>Rick Astley - Never Gonna Give You Up</h3>
-    <p>Enjoy the classic hit while browsing my portfolio!</p>
-    <div class="video-container">
-      <iframe 
-        src="https://player.vimeo.com/video/1111987583?autoplay=1&loop=1&muted=0" 
-        frameborder="0" 
-        allow="autoplay; fullscreen; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-    </div>
-      <div class="music-item">
-    <h3>Joy-Same Place</h3>
-    <p>Enjoy the euphoric vibes!</p>
-    <div class="video-container">
-      <iframe 
-        src="https://player.vimeo.com/video/1112140505?autoplay=1&loop=1&muted=0"
-        
-        frameborder="0" 
-        allow="autoplay; fullscreen; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-    </div>
-  </div>
-
   <div class="music-list">
+    <!-- First Video -->
+    <div class="music-item">
+      <h3>Rick Astley - Never Gonna Give You Up</h3>
+      <p>Enjoy the classic hit while browsing my portfolio!</p>
+      <div class="video-container">
+        <iframe 
+          src="https://player.vimeo.com/video/1111987583?autoplay=1&loop=1&muted=0" 
+          frameborder="0" 
+          allow="autoplay; fullscreen; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Second Video -->
+    <div class="music-item">
+      <h3>Joy - Same Place</h3>
+      <p>Enjoy the euphoric vibes!</p>
+      <div class="video-container">
+        <iframe 
+          src="https://player.vimeo.com/video/1112140505?autoplay=1&loop=1&muted=0"
+          frameborder="0" 
+          allow="autoplay; fullscreen; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Other Music Items -->
     <div class="music-item">
       <h3>Afrobeat</h3>
       <p>High energy rhythms and modern African sounds that inspire creativity while coding.</p>
@@ -151,3 +161,4 @@ function goBackToTopPicks() {
 </div>
 </body>
 </html>
+

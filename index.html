@@ -55,7 +55,7 @@
     display: none; justify-content: space-between; align-items: center;
     padding: 10px 5%; background-color: #111; position: sticky; top: 0; z-index: 1000; max-width: 100vw;
   }
-  .logo-img { height: 35px; width: auto; }
+  .logo-img { height: 35px; width: auto; cursor: pointer; }
   .nav-links { list-style: none; display: flex; margin: 0; padding: 0; gap: 15px; }
   .nav-links li { margin: 0; }
   .nav-links a { color: white; text-decoration: none; cursor: pointer; font-weight: 600; font-size: 0.95rem; }
@@ -112,7 +112,7 @@
 
 <!-- Navbar -->
 <nav class="navbar">
-  <div class="logo"><img src="assets/images/nimepata.png" alt="Logo" class="logo-img" /></div>
+  <div class="logo"><img src="assets/images/nimepata.png" alt="Logo" class="logo-img" id="logo-btn" /></div>
   <ul class="nav-links">
     <li><a href="#" id="home-link">Home</a></li>
     <li><a href="experience.html">Professional</a></li>
@@ -170,7 +170,7 @@
 </footer>
 
 <script>
-// ======= Persistent Profile & Who's Watching =======
+// ======= Persistent Profile & Who's Watching with Fade =======
 window.addEventListener('DOMContentLoaded', ()=>{
   const intro = document.getElementById('intro-screen');
   const profileSection = document.querySelector('.profile-selection');
@@ -184,6 +184,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
   const profiles = document.querySelectorAll('.profile');
   const backButton = document.getElementById('back-button');
   const homeLink = document.getElementById('home-link');
+  const logoBtn = document.getElementById('logo-btn');
 
   function restoreProfileIcon(){
     const saved = sessionStorage.getItem('selectedProfile');
@@ -203,12 +204,10 @@ window.addEventListener('DOMContentLoaded', ()=>{
     window.scrollTo({top:0, behavior:'smooth'});
   }
 
-  // Skip intro if already viewed
   if(sessionStorage.getItem('skipIntro')==='true'){
     showMainContent();
   }
 
-  // Intro click
   if(intro){
     intro.addEventListener('click', ()=>{
       if(sound) try{ sound.play(); }catch(e){}
@@ -218,7 +217,6 @@ window.addEventListener('DOMContentLoaded', ()=>{
     }, {once:true});
   }
 
-  // Profile selection
   profiles.forEach(profile=>{
     profile.addEventListener('click', ()=>{
       const imgSrc = profile.querySelector('img').src;
@@ -229,7 +227,6 @@ window.addEventListener('DOMContentLoaded', ()=>{
     });
   });
 
-  // Profile icon click -> Who's Watching
   if(profileIcon){
     profileIcon.addEventListener('click', ()=>{
       profileSection.style.display='flex';
@@ -243,12 +240,32 @@ window.addEventListener('DOMContentLoaded', ()=>{
     });
   }
 
-  // Home link
   if(homeLink) homeLink.addEventListener('click', e=>{
     e.preventDefault(); showMainContent();
   });
 
-  // Pick links click
+  // Logo click -> Back to Intro with fade
+  if(logoBtn){
+    logoBtn.addEventListener('click', ()=>{
+      const fadeOutSections = [navbar, hero, topPicks, continueWatching, footerEl];
+      fadeOutSections.forEach(el=>{
+        if(el){ el.style.transition='opacity 0.7s ease'; el.style.opacity='0'; }
+      });
+      setTimeout(()=>{
+        fadeOutSections.forEach(el=>{
+          if(el){ el.style.display='none'; el.style.opacity='1'; }
+        });
+        profileSection.style.display='flex';
+        intro.style.display='flex';
+        intro.style.opacity='0';
+        intro.style.transition='opacity 0.7s ease';
+        setTimeout(()=>{ intro.style.opacity='1'; },50);
+        document.body.style.overflow='hidden';
+        if(profileIcon) profileIcon.src='';
+      },700);
+    });
+  }
+
   document.querySelectorAll('.pick-link').forEach(link=>{
     link.addEventListener('click', e=>{
       e.preventDefault();
@@ -257,16 +274,20 @@ window.addEventListener('DOMContentLoaded', ()=>{
     });
   });
 
-  // Back button
-  backButton.addEventListener('click', ()=>{
-    showMainContent();
-    backButton.style.display='none';
-  });
-
   restoreProfileIcon();
 });
+// Smooth horizontal scroll for picks and profiles
+document.querySelectorAll('.pick-buttons, .profiles').forEach(container => {
+  container.addEventListener('wheel', e => {
+    e.preventDefault();
+    container.scrollLeft += e.deltaY;
+  });
+});
+
 </script>
+
 </body>
 </html>
+
 
 

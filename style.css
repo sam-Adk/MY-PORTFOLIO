@@ -277,4 +277,87 @@ body {
   }
 }
 
+/* Responsive containers */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #000;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Profiles scroll horizontally on small devices */
+.profiles {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar for aesthetic Netflix style */
+.profiles::-webkit-scrollbar,
+.pick-buttons::-webkit-scrollbar {
+  display: none;
+}
+
+/* Picks & Continue Watching horizontal scroll */
+.pick-buttons {
+  overflow-x: auto;
+  display: flex;
+  gap: 12px;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+}
+.pick {
+  flex: 0 0 auto;
+  width: 160px;
+  text-align: center;
+  scroll-snap-align: start;
+}
+.pick img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Hero video full screen & responsive */
+.hero .background-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0.3;
+}
+
+/* Buttons responsive */
+.hero .buttons .btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+/* Navbar and profiles scaling */
+.navbar, .profile-selection {
+  width: 100%;
+}
+
+/* Media Queries for mobile, tablet, laptop */
+@media (max-width: 1024px) {
+  .pick { width: 140px; }
+  .pick img { height: 200px; }
+  .profile img { width: 90px; height: 90px; }
+}
+
+@media (max-width: 768px) {
+  .pick { width: 120px; }
+  .pick img { height: 170px; }
+  .profile img { width: 80px; height: 80px; }
+  .hero h1 { font-size: 1.6rem; }
+}
+
+@media (max-width: 480px) {
+  .pick { width: 110px; }
+  .pick img { height: 150px; }
+  .profile img { width: 70px; height: 70px; }
+  .hero h1 { font-size: 1.4rem; }
+}
 
