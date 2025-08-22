@@ -1,54 +1,55 @@
+// Elements
 const intro = document.getElementById('intro-screen');
-const profile = document.querySelector('.profile-selection');
-const sound = document.getElementById('tuduum-sound');
+const profileSection = document.querySelector('.profile-selection');
+const navbar = document.querySelector('.navbar');
+const footerEl = document.querySelector('footer');
+const homeLink = document.getElementById('home-link');
 
-function showMainContent(showAll = false) {
-    intro.style.display = 'none';
-    profile.style.display = 'none';
+// Show main content function
+function showMainContent(section = 'top-picks', profileImgSrc = null) {
+    // Hide intro & profile selection
+    if (intro) intro.style.display = 'none';
+    if (profileSection) profileSection.style.display = 'none';
+
+    // Show main content
+    if (navbar) navbar.style.display = 'flex';
+    document.querySelectorAll('.hero, .top-picks, .continue-watching').forEach(el => el.style.display = 'block');
+    if (footerEl) footerEl.style.display = 'block';
     document.body.style.overflow = 'auto';
-    document.querySelector('.navbar').style.display = 'flex';
-    document.querySelector('footer').style.display = 'block';
 
-    const allSections = [
-        '.hero', '.top-picks', '.continue-watching',
-        '.skills', '.experience', '.projects',
-        '.contact', '.music', '.reading', '.blogs'
-    ];
-
-    if (showAll) {
-        // Show EVERYTHING
-        allSections.forEach(sel => {
-            const el = document.querySelector(sel);
-            if (el) el.style.display = 'block';
-        });
-    } else {
-        // Default = only Hero + Top Picks
-        allSections.forEach(sel => {
-            const el = document.querySelector(sel);
-            if (el) el.style.display = 'none';
-        });
-        document.querySelector('.hero').style.display = 'block';
-        document.querySelector('.top-picks').style.display = 'block';
+    // Display selected profile icon in navbar
+    if (profileImgSrc) {
+        const profileIcon = document.getElementById('profile-icon');
+        if (profileIcon) profileIcon.src = profileImgSrc;
     }
+
+    // Scroll to specific section
+    const sectionEl = document.querySelector(`.${section}`);
+    if (sectionEl) window.scrollTo({ top: sectionEl.offsetTop, behavior: 'smooth' });
 }
 
-// 🔥 Home button → show ALL
-const homeLink = document.getElementById('home-link');
+// Add click listeners for each profile
+document.querySelectorAll('.profile').forEach(p => {
+    p.addEventListener('click', () => {
+        const imgSrc = p.querySelector('img').src;
+        showMainContent('top-picks', imgSrc);
+    });
+});
+
+// Home button
 if (homeLink) {
-    homeLink.addEventListener('click', (e) => {
+    homeLink.addEventListener('click', e => {
         e.preventDefault();
-        showMainContent(true);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const profileIconSrc = document.getElementById('profile-icon')?.src || null;
+        showMainContent('top-picks', profileIconSrc);
     });
 }
 
-document.getElementById("theme-toggle").addEventListener("click", function() {
-  document.body.classList.toggle("light-mode");
-  
-  // Change button text
-  if (document.body.classList.contains("light-mode")) {
-    this.textContent = "🌞 Light Mode";
-  } else {
-    this.textContent = "🌙 Dark Mode";
-  }
-});
+// Intro click: hide intro, show profiles
+if (intro) {
+    intro.addEventListener('click', () => {
+        intro.style.display = 'none';
+        if (profileSection) profileSection.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }, { once: true });
+}

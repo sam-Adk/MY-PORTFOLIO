@@ -1,70 +1,14 @@
- body {
+/* --- Global Styles --- */
+body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background-color: #000;
   color: white;
+  transition: background 0.3s, color 0.3s;
+  overflow-x: hidden;
 }
 
-/* Video background only for the top */
-.video-header {
-    position: relative;
-    width: 100vw;        /* full viewport width */
-    height: 100vh;       /* full viewport height */
-    margin: 0;           /* remove any default margin */
-    padding: 0;          /* remove any padding */
-    overflow: hidden;
-}
-
-.background-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;        /* full width */
-    height: 100vh;       /* full height */
-    object-fit: cover;   /* covers container without stretching */
-    z-index: 1;
-}
-
-
-.overlay-content {
-  position: relative;
-  z-index: 2;
-  padding: 80px 20px 30px 20px;
-  text-align: center;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-}
-
-.hero h1 {
-  font-size: 2.5rem;
-  color: red;
-  margin-bottom: 20px;
-}
-
-.summary {
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 20px;
-  border-radius: 10px;
-  margin: 0 auto;
-  max-width: 800px;
-}
-
-.buttons {
-  margin-top: 20px;
-}
-
-.btn {
-  background-color: red;
-  color: white;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
+/* --- Navbar --- */
 .navbar {
   display: flex;
   align-items: center;
@@ -82,57 +26,170 @@
   display: flex;
   margin: 0;
   padding: 0;
-}
-
-.nav-links li {
-  margin-left: 20px;
+  gap: 20px;
 }
 
 .nav-links a {
   color: white;
   text-decoration: none;
+  transition: color 0.3s;
 }
 
 .nav-links a:hover {
   color: red;
 }
 
-/* Section styles */
-section:not(.video-header) {
-  padding: 40px 20px;
-  max-width: 1000px;
-  margin: auto;
+/* --- Selected Profile Icon --- */
+.selected-profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 15px;
 }
 
-.top-picks, .continue-watching {
+.selected-profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 2px solid red;
+}
+
+/* --- Hero Section --- */
+.hero {
+  position: relative;
   text-align: center;
-  margin-top: 40px;
+  padding: 60px 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  background: linear-gradient(90deg, #ff0000, #ff5555, #ff0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: slideFadeIn 1.5s ease forwards;
+  margin-bottom: 20px;
+}
+
+.summary {
+  text-align: center;
+  line-height: 1.6;
+  color: white;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.buttons .btn {
+  background-color: red;
+  color: white;
+  padding: 12px 25px;
+  text-decoration: none;
+  margin: 10px;
+  display: inline-block;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.buttons .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px red, 0 0 30px darkred;
+  background: linear-gradient(45deg, #ff0000, #ff5555);
+}
+
+/* --- Profiles (Who's Watching) --- */
+.profile-selection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  background-color: black;
+}
+
+.profiles {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 10px;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #111;
+  border: 2px solid #ff0000;
+  padding: 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  margin: 10px;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  width: 160px;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+.profile:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px red;
+  border-color: #ff5555;
+}
+
+.profile img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 2px solid red;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.profile img:hover {
+  transform: scale(1.1);
+  border-color: #ff9999;
+}
+
+.profile p {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 0 5px red;
 }
 
 /* --- Top Picks & Continue Watching --- */
-.top-picks h1,
-.continue-watching h1 {
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-    color: white; /* changed from red to white */
+.top-picks, .continue-watching { display:none; padding:20px 5%; text-align:center; }
+
+.top-picks h1, .continue-watching h1 {
+    font-size:1.6rem;
+    margin-bottom:15px;
+    text-align:center; /* ensure the heading is centered */
 }
 
-
-/* Pick cards container */
 .pick-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content:center; /* center all pick items horizontally */
+    gap:12px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    padding-bottom:10px;
 }
+
+/* optional: remove extra space on sides of horizontal scroll */
+.pick-buttons::-webkit-scrollbar { display:none; } /* hide scrollbar on webkit browsers */
+
 
 .pick {
   text-align: center;
   position: relative;
   transition: transform 0.3s ease;
   cursor: pointer;
-  flex: 1 1 18%; /* try to fit 5 per row */
+  flex: 1 1 18%;
   max-width: 180px;
   min-width: 120px;
 }
@@ -163,249 +220,61 @@ section:not(.video-header) {
   text-shadow: 0 0 5px red, 0 0 10px darkred;
 }
 
-/* Hover border effect around card */
-.pick:hover::after {
-  content: "";
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  width: 100%;
-  height: 100%;
-  border: 2px solid red;
-  border-radius: 12px;
-  box-shadow: 0 0 15px red, 0 0 30px darkred;
-  pointer-events: none;
-}
-
-/* Responsive tweaks */
+/* --- Responsive --- */
 @media (max-width: 800px) {
   .pick {
-    flex: 1 1 30%; /* 2-3 per row on tablets */
+    flex: 1 1 30%;
+  }
+  .profile {
+    width: 140px;
+    padding: 15px;
+  }
+  .profile img {
+    width: 100px;
+    height: 100px;
   }
 }
 
 @media (max-width: 500px) {
   .pick {
-    flex: 1 1 45%; /* 1-2 per row on small screens */
+    flex: 1 1 45%;
+  }
+  .profile {
+    width: 120px;
+    padding: 10px;
+  }
+  .profile img {
+    width: 90px;
+    height: 90px;
   }
 }
 
-/* Hero Section */
-.hero h1 {
-  font-size: 3rem;
-  text-align: center;
-  background: linear-gradient(90deg, #ff0000, #ff5555, #ff0000);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: slideFadeIn 1.5s ease forwards;
-  margin-bottom: 20px;
+@media (max-width: 480px) {
+  .profile img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .nav-links {
+    gap: 8px;
+  }
+  .nav-links a {
+    font-size: 0.7rem;
+  }
+  .selected-profile img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .pick {
+    width: 100px;
+  }
+  .pick img {
+    height: 120px;
+  }
+  .pick p {
+    font-size: 0.75rem;
+  }
 }
 
-.hero .summary {
-    text-align: center;
-    line-height: 1.6;
-    color: white;         /* make text white */
-    background: none;     /* remove black background */
-    padding: 0;           /* optional: remove extra padding if you want it flush */
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-
-
-.hero .buttons .btn {
-  background-color: red;
-  color: white;
-  padding: 12px 25px;
-  text-decoration: none;
-  margin: 10px;
-  display: inline-block;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-}
-
-.hero .buttons .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 15px red, 0 0 30px darkred;
-  background: linear-gradient(45deg, #ff0000, #ff5555);
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideFadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Profiles (Who’s Watching) */
-.profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #111;
-  border: 2px solid #ff0000;
-  padding: 20px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-  width: 160px;
-}
-
-.profile:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 20px red;
-  border-color: #ff5555;
-}
-
-.profile img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 10px;
-  border: 2px solid red;
-  transition: transform 0.3s, border-color 0.3s;
-}
-
-.profile img:hover {
-  transform: scale(1.1);
-  border-color: #ff9999;
-}
-
-.profile p {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: red;
-  text-shadow: 0 0 5px red;
-}
-
-.back-btn {
-  display: inline-block;
-  margin: 20px;
-  padding: 10px 15px;
-  background-color: red;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.back-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 10px red;
-}
-
-/* Video container */
-.video-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%; /* 16:9 ratio */
-  border: 2px solid #ff0000;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-top: 10px;
-}
-
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  border-radius: 12px;
-}
-
-.who-watching {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;  /* vertical center */
-  align-items: center;      /* horizontal center */
-  min-height: 100vh;        /* full viewport height */
-  text-align: center;
-  margin: 0;                /* remove extra margins */
-  padding: 0;               /* remove extra paddings */
-}
-
-.who-watching h1 {
-  margin-bottom: 30px;  /* spacing between text and icons */
-}
-
-/* Default Dark Mode (Netflix style) */
-body {
-  background-color: #000;
-  color: #fff;
-  transition: background 0.3s, color 0.3s;
-}
-
-/* Light Mode */
-body.light-mode {
-  background-color: #fff;
-  color: #000;
-}
-
-/* Button styling */
-.theme-btn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: red;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.3s;
-}
-
-body.light-mode .theme-btn {
-  background: #333;
-  color: #fff;
-}
-
-/* Recruiter Cards */
-.recruiter-row {
-  display: flex;
-  gap: 15px;
-  overflow-x: auto;
-  padding: 20px;
-}
-
-.recruiter-card {
-  flex: 0 0 auto;
-  width: 200px;     /* Controls width */
-  height: 120px;    /* Controls height */
-  border-radius: 8px;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.recruiter-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.recruiter-card:hover {
-  transform: scale(1.05);
-}
-
-.recruiter-card p {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  color: white;
-  font-weight: bold;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-}
 
