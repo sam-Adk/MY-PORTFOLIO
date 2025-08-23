@@ -3,69 +3,248 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Samuel Adikah |  MY Art</title>
+<title>Samuel Adikah | My Art</title>
 <link rel="stylesheet" href="style.css" />
 <style>
-body { margin:0; font-family:'Poppins',sans-serif; background:#000; color:white; overflow-x:hidden; animation: fadeInPage 1s ease forwards; }
-@keyframes fadeInPage { from { opacity:0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }
-.container { max-width:1000px; margin:auto; padding:40px 20px; text-align:center; }
-h1 { color:red; font-size:3rem; margin-bottom:30px; animation: fadeInText 1.5s ease forwards; }
-@keyframes fadeInText { from { opacity:0; transform: translateY(-20px);} to { opacity:1; transform: translateY(0);} }
-.back-btn { display:inline-block; background:red; color:white; padding:10px 20px; border-radius:6px; text-decoration:none; margin-bottom:30px; cursor:pointer; transition: transform 0.3s, background 0.3s; }
-.back-btn:hover { background:#ff6666; transform: translateY(-3px); }
-.project-container { display:flex; flex-wrap:wrap; gap:25px; justify-content:center; }
-.project-card { background:#111; border:2px solid #ff0000; border-radius:12px; padding:25px; width:300px; text-align:center; transition: transform 0.4s, box-shadow 0.4s; opacity:0; animation: fadeInCard 1s ease forwards; }
+body {
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#000;
+  color:white;
+  overflow-x:hidden;
+  animation: fadeInPage 1s ease forwards;
+}
+@keyframes fadeInPage {
+  from { opacity:0; transform: translateY(20px);} 
+  to { opacity:1; transform: translateY(0);} 
+}
+.container {
+  max-width:1000px;
+  margin:auto;
+  padding:40px 20px;
+  text-align:center;
+}
+h1 {
+  color:red;
+  font-size:3rem;
+  margin-bottom:30px;
+  animation: fadeInText 1.5s ease forwards;
+}
+@keyframes fadeInText {
+  from { opacity:0; transform: translateY(-20px);} 
+  to { opacity:1; transform: translateY(0);} 
+}
+.back-btn, .book-btn {
+  display:inline-block;
+  background:red;
+  color:white;
+  padding:12px 24px;
+  border-radius:6px;
+  text-decoration:none;
+  margin:10px;
+  cursor:pointer;
+  font-size:1.1rem;
+  transition: transform 0.3s, background 0.3s;
+}
+.back-btn:hover, .book-btn:hover {
+  background:#ff4d4d;
+  transform: translateY(-3px);
+  box-shadow:0 0 15px red;
+}
+.project-container {
+  display:flex; 
+  flex-wrap:wrap; 
+  gap:25px; 
+  justify-content:center;
+}
+.project-card {
+  background:#111;
+  border:2px solid #ff0000;
+  border-radius:12px;
+  padding:25px;
+  width:300px;
+  text-align:center;
+  transition: transform 0.4s, box-shadow 0.4s;
+  opacity:0;
+  animation: fadeInCard 1s ease forwards;
+}
 .project-card:nth-child(1){animation-delay:0.2s;}
 .project-card:nth-child(2){animation-delay:0.4s;}
-.project-card:hover { transform: translateY(-8px) scale(1.03); box-shadow:0 0 20px red; }
-.project-card img { width:100%; border-radius:10px; margin-bottom:15px; }
+.project-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow:0 0 20px red;
+}
+.project-card img {
+  width:100%;
+  border-radius:10px;
+  margin-bottom:15px;
+}
 .project-card h3 { color:red; margin-bottom:10px; }
 .project-card p { color:#ddd; line-height:1.5; }
-@keyframes fadeInCard { from { opacity:0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }
-</style>
-<script>
-function goBackToTopPicks() {
-    window.location.href = 'index.html#top-picks';
+@keyframes fadeInCard {
+  from { opacity:0; transform: translateY(20px);} 
+  to { opacity:1; transform: translateY(0);} 
 }
-</script>
+
+/* ===== Modal (Cart) ===== */
+.modal {
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center; /* 👈 Center vertically */
+  z-index:1000;
+}
+.modal-content {
+  background:#111;
+  padding:30px;
+  border-radius:12px;
+  width:90%;
+  max-width:600px;
+  color:white;
+  text-align:left;
+  box-shadow:0 0 25px red;
+  animation: fadeInModal 0.4s ease;
+}
+@keyframes fadeInModal {
+  from { opacity:0; transform:scale(0.8);}
+  to { opacity:1; transform:scale(1);}
+}
+.close-btn {
+  float:right;
+  font-size:28px;
+  cursor:pointer;
+  color:red;
+}
+.art-option {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:#222;
+  margin:10px 0;
+  padding:10px;
+  border-radius:6px;
+  border:1px solid red;
+}
+.art-option label { flex:1; cursor:pointer; }
+.art-option input { margin-left:10px; }
+.cart-actions {
+  text-align:right;
+  margin-top:20px;
+}
+.cart-actions button {
+  background:red;
+  color:white;
+  border:none;
+  padding:10px 20px;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.cart-actions button:hover {
+  background:darkred;
+  box-shadow:0 0 10px red;
+}
+</style>
 </head>
 <body>
 <div class="container">
   <a class="back-btn" onclick="goBackToTopPicks()">⬅ Back to Top Picks</a>
+  <button class="book-btn" id="bookArtBtn">🎨 Book Your Art</button>
 
   <h1>My Art</h1>
   <div class="project-container">
     <div class="project-card">
-      <img src="assets/images/art1.jpg" alt="WhatsApp AI Chatbot + Cloud Dashboard">
+      <img src="assets/images/art1.jpg" alt="Billie Eilish Sketch">
       <h3>Billie Eilish</h3>
       <p>Black and white , sketched by pencil,2B,4B and 8B</p>
     </div>
     <div class="project-card">
-      <img src="assets/images/art2.jpg" alt="Netflix-Style Portfolio">
+      <img src="assets/images/art2.jpg" alt="Billie Eilish Inspired">
       <h3>Billie Eilish</h3>
-      <p>Inspired by her Music- Your Power, pencils used 2B,4B,8B</p>
+      <p>Inspired by her Music - Your Power, pencils used 2B,4B,8B</p>
     </div>
     <div class="project-card">
-      <img src="assets/images/art3.jpg" alt="Netflix-Style Portfolio">
+      <img src="assets/images/art3.jpg" alt="African Woman">
       <h3>African Woman</h3>
-      <p>pencil used 4B,8B</p>
+      <p>Pencil used 4B,8B</p>
     </div>
     <div class="project-card">
-      <img src="assets/images/art4.jpg" alt="Netflix-Style Portfolio">
-      <h3>African woman</h3>
-<p>currently ongoing</p>
+      <img src="assets/images/art4.jpg" alt="African woman ongoing">
+      <h3>African Woman</h3>
+      <p>Currently ongoing</p>
     </div>
   </div>
 </div>
-<script>
-  function goBackToTopPicks() {
-    sessionStorage.setItem("skipIntro", "true");
-    window.location.href = "index.html";
-  }
-</script>
 
+<!-- Modal -->
+<div class="modal" id="cartModal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModal">&times;</span>
+    <h2 style="color:red;">🛒 Book Your Favorite Art</h2>
+    <form id="cartForm">
+      <div class="art-option">
+        <label for="art1">Billie Eilish (B&W Sketch)</label>
+        <input type="checkbox" id="art1" name="art" value="Billie Eilish (B&W Sketch)">
+      </div>
+      <div class="art-option">
+        <label for="art2">Billie Eilish (Your Power Inspired)</label>
+        <input type="checkbox" id="art2" name="art" value="Billie Eilish (Your Power Inspired)">
+      </div>
+      <div class="art-option">
+        <label for="art3">African Woman</label>
+        <input type="checkbox" id="art3" name="art" value="African Woman">
+      </div>
+      <div class="art-option">
+        <label for="art4">African Woman (Ongoing)</label>
+        <input type="checkbox" id="art4" name="art" value="African Woman (Ongoing)">
+      </div>
+      <div class="cart-actions">
+        <button type="submit">Confirm Booking</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+function goBackToTopPicks() {
+  sessionStorage.setItem("skipIntro", "true");
+  window.location.href = "index.html";
+}
+
+// Open modal
+const bookBtn = document.getElementById("bookArtBtn");
+const modal = document.getElementById("cartModal");
+const closeModal = document.getElementById("closeModal");
+
+bookBtn.addEventListener("click", ()=> modal.style.display="flex");
+closeModal.addEventListener("click", ()=> modal.style.display="none");
+window.addEventListener("click", (e)=>{
+  if(e.target===modal) modal.style.display="none";
+});
+
+// Handle form
+document.getElementById("cartForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  let selected = [];
+  document.querySelectorAll("input[name='art']:checked").forEach(el=>{
+    selected.push(el.value);
+  });
+  if(selected.length===0){
+    alert("Please select at least one artwork 🎨");
+  } else {
+    alert("You booked: \n" + selected.join(", "));
+    modal.style.display="none";
+  }
+});
+</script>
 </body>
 </html>
+
+
+
 
 
 

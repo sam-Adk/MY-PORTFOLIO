@@ -5,21 +5,103 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Contact | Samuel Adikah</title>
 <link rel="stylesheet" href="style.css" />
+<!-- Font Awesome for social icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-body{margin:0;font-family:'Poppins',sans-serif;background:#000;color:#fff;}
-.page-container{max-width:600px;margin:auto;padding:40px 20px;text-align:center;}
-h1{color:red;font-size:2.5rem;margin-bottom:20px;}
-.back-btn{background:red;color:white;border:none;padding:10px 20px;border-radius:5px;cursor:pointer;margin-bottom:40px;}
-.back-btn:hover{background:darkred;}
-form input, form textarea{width:100%;padding:10px;margin-bottom:15px;border-radius:5px;border:none;}
-form button{background:red;color:white;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;}
-form button:hover{background:darkred;}
-a{color:red;}
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #000;
+    color: #fff;
+  }
+  .page-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  h1 {
+    color: red;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  .back-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 40px;
+  }
+  .back-btn:hover { background: darkred; }
+  form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: none;
+  }
+  form button {
+    background: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  form button:hover { background: darkred; }
+
+  /* --- Email Card --- */
+  .email-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #111;
+    border: 2px solid red;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    transition: 0.3s;
+  }
+  .email-card i {
+    color: red;
+    font-size: 1.3rem;
+  }
+  .email-card a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  .email-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255,0,0,0.5);
+  }
+  .email-card:hover a { color: red; }
+
+  /* --- Social Icons --- */
+  .social-links {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  .social-links a {
+    color: white;
+    font-size: 2rem;
+    transition: 0.3s;
+  }
+  .social-links a:hover {
+    color: red;
+    transform: scale(1.2);
+  }
 </style>
 <script>
-function goBackToTopPicks(){
-    window.location.href='index.html#top-picks';
-}
+  function goBackToTopPicks() {
+    sessionStorage.setItem("skipIntro", "true");
+    window.location.href = "index.html";
+  }
 </script>
 </head>
 <body>
@@ -27,22 +109,31 @@ function goBackToTopPicks(){
   <a class="back-btn" onclick="goBackToTopPicks()">⬅ Back to Top Picks</a>
 
   <h1>Contact Me</h1>
-  <p>Email: <a href="mailto:samsmollett50@gmail.com">samsmollett50@gmail.com</a></p>
+
+  <!-- Email styled card -->
+  <div class="email-card">
+    <i class="fas fa-envelope"></i>
+    <a href="mailto:samsmollett50@gmail.com">samsmollett50@gmail.com</a>
+  </div>
+  
   <form>
     <input type="text" placeholder="Your Name" required>
     <input type="email" placeholder="Your Email" required>
     <textarea placeholder="Your Message" rows="5"></textarea>
     <button type="submit">Send</button>
   </form>
-</div>
-<script>
-  function goBackToTopPicks() {
-    sessionStorage.setItem("skipIntro", "true");
-    window.location.href = "index.html";
-  }
-</script>
 
+  <!-- Social media icons -->
+  <div class="social-links">
+    <a href="https://instagram.com/sam__smollett2.0" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://github.com/sam-Adk" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://www.kaggle.com/samsmollett" target="_blank"><i class="fab fa-kaggle"></i></a>
+    <a href="https://linkedin.com/in/Samuel Adikah" target="_blank"><i class="fab fa-linkedin"></i></a>
+  </div>
+</div>
 </body>
 </html>
+
+
 
 
