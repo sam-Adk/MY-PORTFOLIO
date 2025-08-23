@@ -1,4 +1,4 @@
-/* --- Global Styles --- */
+   /* --- Global Styles --- */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -427,3 +427,92 @@ body, html {
 .pick, .profile {
   pointer-events: auto; /* ensure wheel works */
 }
+  /* === FULL-BLEED HERO VIDEO (override) === */
+.hero {
+  position: relative;
+  /* break out of any page padding/centering and span the viewport width */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  width: 100vw !important;
+  max-width: 100vw !important;
+
+  /* pick the height you want; 100vh = full screen, or keep your value */
+  height: 100vh;
+
+  /* keep content off the very edges visually */
+  padding-top: 60px;         /* keep your top spacing */
+  padding-bottom: 60px;      /* optional */
+  padding-left: 0;           /* no side padding so video touches edges */
+  padding-right: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* make the background video truly cover the hero */
+.hero .background-video {
+  position: absolute;
+  inset: 0;                  /* top:0; right:0; bottom:0; left:0; */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* fills without letterboxing */
+  opacity: 0.3;              /* your existing look */
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* keep overlay content centered and on top of the video */
+.hero > h1,
+.hero > .summary,
+.hero > .buttons {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;         /* same nice readable width */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;        /* side breathing room for text/buttons */
+  padding-right: 20px;
+  text-align: center;
+}
+.intro-logo {
+  width: 420px;
+  max-width: 80vw;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  transition: transform 1s ease, opacity 0.8s ease;
+}
+
+.intro-logo.zoom-in {
+  transform: scale(5);
+  opacity: 0;
+}
+
+.resume-modal {
+  display: none; 
+  position: fixed; 
+  z-index: 9999; 
+  left: 0; 
+  top: 0; 
+  width: 100%; 
+  height: 100%; 
+  background-color: rgba(0,0,0,0.8); 
+  justify-content: center; 
+  align-items: center;
+}
+
+.resume-content {
+  background: #fff;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 900px;
+  padding: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.close-btn {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+

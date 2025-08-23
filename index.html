@@ -178,12 +178,81 @@ footer { background-color:#111; text-align:center; padding:20px; font-size:14px;
 </section>
 
 <!-- Resume Modal -->
-<div id="resume-modal">
-  <div style="position:relative; width:90%; height:90%;">
-    <button id="close-modal">Close</button>
-    <iframe id="resume-frame" src="assets/files/Samuel_Adikah_Resume.pdf"></iframe>
+<div id="resumeModal" class="resume-modal">
+  <div class="resume-content">
+    <span id="closeResume" class="close-btn">&times;</span>
+    <iframe src="https://drive.google.com/file/d/1L2UAXzS3O2nqXkvCjJFyMAxp8XW-hcC1/preview" 
+            width="100%" height="100%" allow="autoplay">
+    </iframe>
   </div>
 </div>
+
+<style>
+/* Background overlay */
+.resume-modal {
+  display: none; /* hidden by default */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9); /* Netflix black overlay */
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Resume modal box */
+.resume-content {
+  background: #111; /* deep Netflix black */
+  padding: 15px;
+  border-radius: 12px;
+  width: 70%;
+  max-width: 900px;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 30px rgba(229, 9, 20, 0.7); /* Netflix red glow */
+  transform: scale(0.95);
+  opacity: 0;
+  animation: zoomIn 0.4s ease forwards;
+}
+
+/* PDF viewer */
+.resume-content iframe {
+  flex: 1;
+  border: none;
+  border-radius: 8px;
+}
+
+/* Close button */
+.close-btn {
+  color: #fff;
+  font-size: 34px;
+  font-weight: bold;
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.close-btn:hover {
+  color: #e50914; /* Netflix red */
+  transform: scale(1.2);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+@keyframes zoomIn {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+</style>
 
 <!-- Back Button -->
 <div class="back-to-top" id="back-button">← Back</div>
@@ -254,15 +323,41 @@ window.addEventListener('DOMContentLoaded', ()=>{
   if(sessionStorage.getItem('skipIntro')==='true'){
     showMainContent();
   }
+// Handle the intro click
+if (intro) {
+  intro.addEventListener('click', () => {
+    if (sound) {
+      try { sound.play(); } catch (e) {}
+    }
 
-  if(intro){
-    intro.addEventListener('click', ()=>{
-      if(sound) try{ sound.play(); }catch(e){}
-      intro.style.display='none';
-      profileSection.style.display='flex';
-      document.body.style.overflow='hidden';
-    }, {once:true});
-  }
+    const logo = document.querySelector('.intro-logo');
+    if (logo) {
+      setTimeout(() => logo.classList.add('zoom-in'), 500);
+    }
+
+    setTimeout(() => {
+      if (logo) {
+        logo.classList.remove('zoom-in'); // reset zoom
+      }
+      intro.style.display = 'none';
+      profileSection.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }, 1200);
+  }, { once: true });
+}
+
+// ✅ Handle the top-left logo click later
+const topLogo = document.querySelector('.top-left-logo'); 
+if (topLogo) {
+  topLogo.addEventListener('click', () => {
+    if (sound) {
+      try { 
+        sound.currentTime = 0; // rewind to start
+        sound.play(); 
+      } catch (e) {}
+    }
+  });
+}
 
   profiles.forEach(profile=>{
     profile.addEventListener('click', ()=>{
@@ -330,23 +425,41 @@ document.querySelectorAll('.pick-buttons, .profiles').forEach(container => {
     container.scrollLeft += e.deltaY;
   });
 });
-
 // ======= Resume Modal =======
-const resumeBtn = document.getElementById('resume-btn');
-const resumeModal = document.getElementById('resume-modal');
-const closeModal = document.getElementById('close-modal');
+const resumeBtn = document.getElementById("resume-btn"); // ✅ fixed ID
+const resumeModal = document.getElementById("resumeModal");
+const closeResume = document.getElementById("closeResume");
 
-resumeBtn.addEventListener('click', e => {
-  e.preventDefault();
-  resumeModal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-});
+if (resumeBtn) {
+  resumeBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    resumeModal.style.display = "flex";
+  });
+}
 
-closeModal.addEventListener('click', () => {
-  resumeModal.style.display = 'none';
-  document.body.style.overflow = 'auto';
+if (closeResume) {
+  closeResume.addEventListener("click", () => {
+    resumeModal.style.display = "none";
+  });
+}
+
+window.addEventListener("click", (e) => {
+  if (e.target === resumeModal) {
+    resumeModal.style.display = "none";
+  }
 });
 </script>
+
+</script>
+<div id="resumeModal" class="resume-modal">
+  <div class="resume-content">
+    <span id="closeResume" class="close-btn">&times;</span>
+    <iframe src="https://drive.google.com/file/d/1L2UAXzS3O2nqXkvCjJFyMAxp8XW-hcC1/preview" 
+            width="100%" height="600px" style="border:none;">
+    </iframe>
+  </div>
+</div>
+
 
 </body>
 </html>
