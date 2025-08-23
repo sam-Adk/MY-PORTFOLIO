@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Samuel Adikah |  MY Art</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+body { margin:0; font-family:'Poppins',sans-serif; background:#000; color:white; overflow-x:hidden; animation: fadeInPage 1s ease forwards; }
+@keyframes fadeInPage { from { opacity:0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }
+.container { max-width:1000px; margin:auto; padding:40px 20px; text-align:center; }
+h1 { color:red; font-size:3rem; margin-bottom:30px; animation: fadeInText 1.5s ease forwards; }
+@keyframes fadeInText { from { opacity:0; transform: translateY(-20px);} to { opacity:1; transform: translateY(0);} }
+.back-btn { display:inline-block; background:red; color:white; padding:10px 20px; border-radius:6px; text-decoration:none; margin-bottom:30px; cursor:pointer; transition: transform 0.3s, background 0.3s; }
+.back-btn:hover { background:#ff6666; transform: translateY(-3px); }
+.project-container { display:flex; flex-wrap:wrap; gap:25px; justify-content:center; }
+.project-card { background:#111; border:2px solid #ff0000; border-radius:12px; padding:25px; width:300px; text-align:center; transition: transform 0.4s, box-shadow 0.4s; opacity:0; animation: fadeInCard 1s ease forwards; }
+.project-card:nth-child(1){animation-delay:0.2s;}
+.project-card:nth-child(2){animation-delay:0.4s;}
+.project-card:hover { transform: translateY(-8px) scale(1.03); box-shadow:0 0 20px red; }
+.project-card img { width:100%; border-radius:10px; margin-bottom:15px; }
+.project-card h3 { color:red; margin-bottom:10px; }
+.project-card p { color:#ddd; line-height:1.5; }
+@keyframes fadeInCard { from { opacity:0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }
+</style>
+<script>
+function goBackToTopPicks() {
+    window.location.href = 'index.html#top-picks';
+}
+</script>
+</head>
+<body>
+<div class="container">
+  <a class="back-btn" onclick="goBackToTopPicks()">⬅ Back to Top Picks</a>
+
+  <h1>My Art</h1>
+  <div class="project-container">
+    <div class="project-card">
+      <img src="assets/images/art1.jpg" alt="WhatsApp AI Chatbot + Cloud Dashboard">
+      <h3>Billie Eilish</h3>
+      <p>Black and white , sketched by pencil,2B,4B and 8B</p>
+    </div>
+    <div class="project-card">
+      <img src="assets/images/art2.jpg" alt="Netflix-Style Portfolio">
+      <h3>Billie Eilish</h3>
+      <p>Inspired by her Music- Your Power, pencils used 2B,4B,8B</p>
+    </div>
+    <div class="project-card">
+      <img src="assets/images/art3.jpg" alt="Netflix-Style Portfolio">
+      <h3>African Woman</h3>
+      <p>pencil used 4B,8B</p>
+    </div>
+    <div class="project-card">
+      <img src="assets/images/art4.jpg" alt="Netflix-Style Portfolio">
+      <h3>African woman</h3>
+<p>currently ongoing</p>
+    </div>
+  </div>
+</div>
+<script>
+  function goBackToTopPicks() {
+    sessionStorage.setItem("skipIntro", "true");
+    window.location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>
+
+
+
