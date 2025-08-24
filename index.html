@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -40,9 +40,11 @@ body {
 }
 .profile-selection h1 { color: red; font-size: 2.5rem; margin-bottom: 30px; }
 .profiles {
-  display: flex; flex-wrap: nowrap; justify-content: center; align-items: center;
+  display: flex; flex-wrap: nowrap; justify-content: flex-start; align-items: center;
   gap: 20px; width: 100%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; max-width: 100vw;
+  -ms-overflow-style: none; scrollbar-width: none;
 }
+.profiles::-webkit-scrollbar { display: none; }
 .profile { display: flex; flex-direction: column; align-items: center; background: #111;
   padding: 15px; border-radius: 8px; cursor: pointer; transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
   flex: 0 0 auto; width: 140px; scroll-snap-align: start;
@@ -106,7 +108,10 @@ nav.navbar {
 /* --- Top Picks & Continue Watching --- */
 .top-picks, .continue-watching { display:none; padding: 20px 5%; text-align:center; }
 .top-picks h1, .continue-watching h1 { font-size:1.6rem; margin-bottom:15px; text-align:center; }
-.pick-buttons { display:flex; flex-wrap: nowrap; justify-content: center; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px; }
+.pick-buttons { display:flex; flex-wrap: nowrap; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px;
+  -ms-overflow-style: none; scrollbar-width: none;
+}
+.pick-buttons::-webkit-scrollbar { display:none; }
 .pick { flex:0 0 auto; width:160px; text-align:center; scroll-snap-align:start; }
 .pick img { width:100%; aspect-ratio:1/1; border-radius:10px; object-fit:cover; }
 .pick a { color:white; text-decoration:none; display:inline-block; font-size:0.9rem; }
@@ -117,63 +122,51 @@ nav.navbar {
 
 footer { background-color:#111; text-align:center; padding:20px; font-size:14px; color:#aaa; }
 
-/* --- Responsive --- */
+/* --- Responsive (unchanged) --- */
 @media (max-width:1024px) { .logo-img { height:30px; } .nav-links a { font-size:0.9rem; } .pick { width:140px; } .pick img { height:200px; } }
 @media (max-width:768px) { .profile { width:120px; padding:10px; } .profile img { width:90px; height:90px; } .profile-selection h1 { font-size:2rem; } .pick { width:120px; } .pick img { height:170px; } .hero h1 { font-size:1.8rem; } .summary { font-size:0.9rem; } .nav-links a { font-size:0.85rem; } }
 @media (max-width:480px) { .profile { width:100px; padding:8px; } .profile img { width:80px; height:80px; } .profile-selection h1 { font-size:1.5rem; } .pick { width:110px; } .pick img { height:150px; } .hero h1 { font-size:1.5rem; } .summary { font-size:0.85rem; } .logo-img { height:25px; } .nav-links a { font-size:0.75rem; } }
-/* ===== Mobile Fixes ===== */
+
+/* ===== Mobile Fixes (ONLY where needed) ===== */
+/* Keep horizontal scrolling on mobile for profiles and pick rows */
 @media (max-width: 768px) {
-  /* Who's Watching - allow wrapping & scrolling */
   .profiles {
-    flex-wrap: wrap;         /* let profiles wrap instead of squeeze */
-    justify-content: center; /* center them */
-    overflow-x: visible;     /* disable awkward horizontal scroll */
-    gap: 15px;
+    flex-wrap: nowrap;          /* keep single row */
+    justify-content: flex-start;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
   }
   .profile {
-    width: 45%;              /* two per row on mobile */
-    max-width: 160px;
-  }
-  .profile img {
-    width: 100px;
-    height: 100px;
+    flex: 0 0 auto;
+    width: 120px;
+    padding: 10px;
   }
 
-  /* Top Picks & Continue Watching - scrollable grid */
   .pick-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    display: flex;              /* keep horizontal row */
+    flex-wrap: nowrap;
+    overflow-x: auto;
     gap: 12px;
-    overflow-x: visible;  /* prevent sideways cutoffs */
+    scroll-snap-type: x mandatory;
   }
   .pick {
-    width: 100%;
-  }
-  .pick img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1/1; /* keep square shape */
+    flex: 0 0 130px;
+    width: 130px;
   }
 
-  /* Profile Icon - fix egg shape */
+  /* Profile Icon - ensure perfect circle on small screens */
   .selected-profile img {
     width: 35px;
     height: 35px;
-    border-radius: 50%;   /* true circle */
-    object-fit: cover;    /* crop nicely */
+    border-radius: 50%;
+    object-fit: cover;
   }
 }
 
 @media (max-width: 480px) {
-  .profile {
-    width: 100%;   /* one per row on very small phones */
-    max-width: 200px;
-  }
-  .pick-buttons {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  }
+  .pick { flex-basis: 120px; width: 120px; }
 }
-
 </style>
 </head>
 <body>
@@ -471,13 +464,15 @@ if (topLogo) {
   restoreProfileIcon();
 });
 
-// Smooth horizontal scroll for picks and profiles
+// Smooth horizontal scroll for picks and profiles (mouse wheel to side-scroll)
 document.querySelectorAll('.pick-buttons, .profiles').forEach(container => {
   container.addEventListener('wheel', e => {
+    if (e.deltaY === 0) return;
     e.preventDefault();
     container.scrollLeft += e.deltaY;
-  });
+  }, { passive: false });
 });
+
 // ======= Resume Modal =======
 const resumeBtn = document.getElementById("resume-btn"); // ✅ fixed ID
 const resumeModal = document.getElementById("resumeModal");
@@ -512,6 +507,9 @@ window.addEventListener("click", (e) => {
     </iframe>
   </div>
 </div>
+
+</body>
+</html>
 
 
 
