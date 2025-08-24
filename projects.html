@@ -5,7 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Samuel Adikah | Projects</title>
 <link rel="stylesheet" href="style.css" />
-<style>
+<style>.project-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  align-items: stretch; /* 🔥 makes all cards equal height */
+}
+
+.project-card {
+  background: #111;
+  border: 2px solid #ff0000;
+  border-radius: 12px;
+  padding: 25px;
+  width: 300px;
+  display: flex;
+  flex-direction: column; /* stack elements vertically */
+  justify-content: space-between; /* push button to bottom */
+  text-align: center;
+  transition: transform 0.4s, box-shadow 0.4s;
+  opacity: 0;
+  animation: fadeInCard 1s ease forwards;
+}
+
+.project-card:nth-child(1) { animation-delay: 0.2s; }
+.project-card:nth-child(2) { animation-delay: 0.4s; }
+.project-card:nth-child(3) { animation-delay: 0.6s; }
+.project-card:nth-child(4) { animation-delay: 0.8s; }
+
+.project-link {
+  display: inline-block;
+  background: red;
+  color: white !important;
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-top: 20px;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.project-link:hover {
+  background: #ff6666;
+  transform: translateY(-3px);
+}
+
 body { margin:0; font-family:'Poppins',sans-serif; background:#000; color:white; overflow-x:hidden; animation: fadeInPage 1s ease forwards; }
 @keyframes fadeInPage { from { opacity:0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }
 .container { max-width:1000px; margin:auto; padding:40px 20px; text-align:center; }
@@ -39,21 +83,25 @@ function goBackToTopPicks() {
       <img src="assets/images/MMR.png" alt="WhatsApp AI Chatbot + Cloud Dashboard">
       <h3>Mood Movie Recommender</h3>
       <p>Built a movie app where you are recommended a movie or a tv show based on your current mood.</p>
+      Link: <a class="project-link" href="https://sam-adk.github.io/Mood-Movie-Recommendor/" target="_blank">View Project</a>
     </div>
     <div class="project-card">
       <img src="assets/images/Netflixsam.png" alt="Netflix-Style Portfolio">
       <h3>Netflix-Style Portfolio</h3>
       <p>Animated portfolio with a custom intro, profile selector, dynamic sections, and personalized recruiter view.</p>
+      Link: <a class="project-link" href="https://sam-adk.github.io/MY-PORTFOLIO/" target="_blank">View Project</a>
     </div>
     <div class="project-card">
       <img src="assets/images/safari.png" alt="Netflix-Style Portfolio">
       <h3>Safari Travel</h3>
       <p>This project is for The travelers who may want to book tickets in african travelling sites online</p>
+      Link: <a class="project-link"href="https://sam-adk.github.io/Safari-Travel/" target="_blank">View Project</a>
     </div>
     <div class="project-card">
       <img src="assets/images/dreams.png" alt="Netflix-Style Portfolio">
       <h3>Talking Dreams</h3>
       <p>Made this Poject with much love,For those dream chasers out there,this site allows a person to write all their dreams and their future planning and send it to themselves in the future</p>
+      Link: <a class="project-link" href="https://sam-adk.github.io/Talking-Dreams/" target="_blank">View Project</a>
     </div>
   </div>
 </div>
