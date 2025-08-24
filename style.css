@@ -557,5 +557,46 @@ body, html {
   border-radius: 50%;   /* Makes it circular */
   object-fit: cover;    /* Ensures image fits nicely */
 }
+/* --- Who's Watching --- */
+.whos-watching {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.whos-watching h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.profile-options {
+  display: flex;
+  flex-wrap: wrap;   /* Wraps to next line on small screens */
+  justify-content: center;
+  gap: 20px;
+}
+
+.profile-options .profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.profile-options img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px; /* Square-rounded look like Netflix */
+  object-fit: cover;
+  margin-bottom: 10px;
+  transition: transform 0.3s;
+}
+
+.profile-options img:hover {
+  transform: scale(1.1);
+}
 
 
