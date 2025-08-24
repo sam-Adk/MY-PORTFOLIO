@@ -530,5 +530,32 @@ body, html {
   background: #ff6666;
   transform: translateY(-3px);
 }
+/* --- Scrollable Rows --- */
+.scroll-row {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-row::-webkit-scrollbar {
+  display: none; /* hide scrollbar for cleaner look */
+}
+
+.scroll-row > * {
+  flex: 0 0 auto;   /* Prevent shrinking */
+  scroll-snap-align: start;
+}
+
+/* --- Profile Icon Fix --- */
+.profile-icon img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;   /* Makes it circular */
+  object-fit: cover;    /* Ensures image fits nicely */
+}
 
 
