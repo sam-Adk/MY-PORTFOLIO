@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -121,6 +121,59 @@ footer { background-color:#111; text-align:center; padding:20px; font-size:14px;
 @media (max-width:1024px) { .logo-img { height:30px; } .nav-links a { font-size:0.9rem; } .pick { width:140px; } .pick img { height:200px; } }
 @media (max-width:768px) { .profile { width:120px; padding:10px; } .profile img { width:90px; height:90px; } .profile-selection h1 { font-size:2rem; } .pick { width:120px; } .pick img { height:170px; } .hero h1 { font-size:1.8rem; } .summary { font-size:0.9rem; } .nav-links a { font-size:0.85rem; } }
 @media (max-width:480px) { .profile { width:100px; padding:8px; } .profile img { width:80px; height:80px; } .profile-selection h1 { font-size:1.5rem; } .pick { width:110px; } .pick img { height:150px; } .hero h1 { font-size:1.5rem; } .summary { font-size:0.85rem; } .logo-img { height:25px; } .nav-links a { font-size:0.75rem; } }
+/* ===== Mobile Fixes ===== */
+@media (max-width: 768px) {
+  /* Who's Watching - allow wrapping & scrolling */
+  .profiles {
+    flex-wrap: wrap;         /* let profiles wrap instead of squeeze */
+    justify-content: center; /* center them */
+    overflow-x: visible;     /* disable awkward horizontal scroll */
+    gap: 15px;
+  }
+  .profile {
+    width: 45%;              /* two per row on mobile */
+    max-width: 160px;
+  }
+  .profile img {
+    width: 100px;
+    height: 100px;
+  }
+
+  /* Top Picks & Continue Watching - scrollable grid */
+  .pick-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    overflow-x: visible;  /* prevent sideways cutoffs */
+  }
+  .pick {
+    width: 100%;
+  }
+  .pick img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1; /* keep square shape */
+  }
+
+  /* Profile Icon - fix egg shape */
+  .selected-profile img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;   /* true circle */
+    object-fit: cover;    /* crop nicely */
+  }
+}
+
+@media (max-width: 480px) {
+  .profile {
+    width: 100%;   /* one per row on very small phones */
+    max-width: 200px;
+  }
+  .pick-buttons {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+}
+
 </style>
 </head>
 <body>
@@ -459,6 +512,22 @@ window.addEventListener("click", (e) => {
     </iframe>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
