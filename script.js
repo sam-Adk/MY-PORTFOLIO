@@ -54,19 +54,11 @@ if (intro) {
     }, { once: true });
 }
 
-document.querySelectorAll('.pick-buttons, .profiles').forEach(container => {
-  let scrollAmount = 0;
-
+// Only horizontal-wheel for the carousels, NOT the Who's Watching profiles
+document.querySelectorAll('.pick-buttons').forEach(container => {
   container.addEventListener('wheel', e => {
+    if (e.deltaY === 0) return;
     e.preventDefault();
-    scrollAmount += e.deltaY;
-
-    const step = () => {
-      if(Math.abs(scrollAmount) < 0.5) return scrollAmount = 0;
-      container.scrollLeft += scrollAmount * 0.1;
-      scrollAmount *= 0.9; // damping effect
-      requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  });
+    container.scrollLeft += e.deltaY;
+  }, { passive: false });
 });
